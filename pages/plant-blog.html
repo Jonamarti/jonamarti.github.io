@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Plant blog</title>
+	<link rel="stylesheet" type="text/css" href="../style.css">
+	<title>Plant blog</title>
+
+	<!-- Favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+	<link rel="manifest" href="../site.webmanifest">
+
+</head>
+
+<body>
+	<nav>
+		<ul>
+			<li><a href="index.html">Home</a></li>
+
+			<li class="dropdown">
+				<a href="projects.html" class="dropbtn activePage">Projects</a>
+				<div class="dropdown-content">
+					<a href="plant-blog.html">Plant blog</a>
+					<a href="todoapppurejs.html">To Do App</a>
+					<a href="matrixCalc.html">Matrix Calculator</a>
+				</div>
+			</li>
+			<li class="about">
+				<a href="about.html" class="about">
+					About
+				</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div>
+		<section class="projects">
+			<h2>Plant blog </h2>
+			<article>
+
+				<img src="../images/plantblog.gif">
+				<p>This is a full stack app. It uses MongoDB cloud for the database, NodeJS
+					and Express for the backend, and React for the front end.
+					<br> Each plant specimen has a range atmospheric conditions it survives in, such as temperature and humidity.
+					Sometimes a hailstorm or a heat spell can hit us and damage or kill our beloved plants. Half of this app is dedicated
+					to alerting the user if such extreme conditions would come in the next days. For that, it uses the blogging part of 
+					the application, where the user can upload the progress of each plant along the information of the species, and that info 
+					is used to check agains the weather API for extreme conditions.
+
+		
+				</p>
+			</article>
+		</section>
+	</div>
+
+
+
+</body>
+
+</html>
