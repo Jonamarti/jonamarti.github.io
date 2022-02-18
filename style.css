@@ -62,16 +62,16 @@ body {
 	position: relative;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
-	/* -webkit-transition: all 0.5s ease-in-out; */
+	-webkit-transition: all 0s ease-in-out;
 	transition: all 0s ease-in-out;
-	/* -webkit-animation: cubeRotation 2s infinite; */
+	-webkit-animation: cubeRotation 50s infinite;
 	animation: cubeRotation 50s ease-in-out infinite;
 }
 
 #D3Cube>div {
 	position: absolute;
-	-webkit-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
+	-webkit-transition: all 0s ease-in-out;
+	transition: all 0s ease-in-out;
 	width: 224px;
 	height: 224px;
 	float: left;
@@ -112,7 +112,6 @@ article p {
 	margin:auto;
 	margin-bottom:1%;
 	margin-top:1%;
-	text-align: center;
 	width: 80%;
 
 }
@@ -244,6 +243,7 @@ a.about {
 
 }
 
+
 /* Active page end*/
 
 
@@ -287,7 +287,7 @@ button:hover {
 
 	25% {
 		transform: rotateX(120deg) rotateY(120deg) rotateZ(0deg);
-		background-color: aquamarine;
+		background-color: rgb(89, 175, 147);
 	}
 
 	50% {
@@ -297,7 +297,7 @@ button:hover {
 
 	75% {
 		transform: rotateX(120deg) rotateY(0deg) rotateZ(120deg);
-		background-color: darkorange;
+		background-color: rgb(187, 107, 8);
 	}
 
 	100% {
@@ -314,17 +314,17 @@ button:hover {
 
 	25% {
 
-		background-color: rgb(0, 44, 29);
+		background-color: rgb(26, 122, 89);
 	}
 
 	50% {
 
-		background-color: rgb(26, 0, 51);
+		background-color: rgb(62, 3, 117);
 	}
 
 	75% {
 
-		background-color: rgb(46, 0, 38);
+		background-color: rgb(100, 2, 15);
 	}
 
 	100% {
