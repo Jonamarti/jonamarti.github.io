@@ -109,7 +109,9 @@ article {
 
 article p {
 	color: inherit;
+	margin:auto;
 	margin-bottom:1%;
+	margin-top:1%;
 	text-align: center;
 	width: 80%;
 
