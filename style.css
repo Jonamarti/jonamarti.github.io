@@ -26,7 +26,8 @@ header {
 
 
 body {
-
+	min-height: 100%;
+	height: fit-content;
 	background-color: transparent;
 }
 
@@ -83,10 +84,12 @@ body {
 
 /* Background anim finish */
 
+/* Projects */ 
+
 .projects {
 	margin-top: 2%;
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	flex-wrap: wrap;
 	width: 85%;
 
@@ -96,8 +99,9 @@ article {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	margin-top: 0%;
-	max-width: 70%;
+	margin-top: 1%;
+	max-width: 40%;
+	width: 80%;
 	margin-bottom: 10%;
 	border: 1px solid;
 	padding: 1%;
@@ -107,23 +111,36 @@ article {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
+/* Only for main page articles */ 
+
+.projects article{
+	width: 25%;
+}
+
 article p {
 	color: inherit;
-	margin:auto;
-	margin-bottom:1%;
-	margin-top:1%;
+	margin: auto;
+	margin-bottom: 1%;
+	margin-top: 1%;
 	width: 80%;
 
 }
 
 article p a {
-	color:inherit;
-	background-color: inherit;
+	color: inherit;
+	background-color: white;
 
 }
 
-article p a:hover{
-	color:red;
+article p a:hover {
+	color: red;
+}
+
+article h2{
+	background-color: aliceblue;
+	color:black;
+	margin-bottom:3%;
+	width: 100%;
 }
 
 img {
@@ -212,8 +229,6 @@ a.about {
 	display: block;
 
 }
-
-
 
 
 .goUpAnchor {
@@ -380,20 +395,109 @@ button:hover {
 
 
 footer {
-	height: 100px;
+	height: fit-content;
 	position: relative;
 	z-index: 1;
 	background-color: transparent;
 	text-align: left;
-	margin-top: 10vh;
 	margin-left: 2%;
-
+	margin-bottom: 2%
 }
 
 footer img {
 	/* background-color:white; */
 	width: 20px;
 	height: auto;
-	margin-right:1%;
+	margin-right: 1%;
 
 }
+
+/* Responsive website */
+
+@media only screen and (max-width:800px){
+
+	.projects article{
+		/* min-width: 50%; */
+		width: 40%;
+		max-width:none;
+	}
+}
+
+
+@media only screen and (max-width: 600px) {
+
+	/* Back anim */
+	#wrapD3Cube {
+		width: 250px;
+		height: 250px;
+		margin: 20px auto;
+		margin-top: 10%;
+		z-index: -5;
+		position: absolute;
+		display: block;
+		width: 100%;
+
+	}
+
+	#D3Cube {
+		width: 150px;
+		height: 150px;
+		top: 25px;
+	}
+
+	#D3Cube>div {
+		
+		width: 112px;
+		height: 112px;
+	}
+
+	#side1 {
+		transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(112px);
+		-moz-transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(112px);
+		-webkit-transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(112px);
+	
+	}
+	
+	#side2 {
+		transform: rotateY(-90deg) translateX(0px) translateY(0px) translateZ(112px);
+		-moz-transform: rotateY(-90deg) translateX(0px) translateY(0px) translateZ(112px);
+		-webkit-transform: rotateY(-90deg) translateX(0px) translateY(0px) translateZ(112px);
+	
+	}
+	
+	#side3 {
+		transform: translateX(0px) translateY(0px) translateZ(112px);
+		-moz-transform: translateX(0px) translateY(0px) translateZ(112px);
+		-webkit-transform: translateX(0px) translateY(0px) translateZ(112px);
+	
+	}
+	
+	#side4 {
+		transform: rotateY(90deg) translateX(0px) translateY(0px) translateZ(112px);
+		-moz-transform: rotateY(90deg) translateX(0px) translateY(0px) translateZ(112px);
+		-webkit-transform: rotateY(90deg) translateX(0px) translateY(0px) translateZ(112px);
+	
+	}
+	
+	#side5 {
+		transform: rotateY(180deg) translateX(0px) translateY(0px) translateZ(112px);
+		-moz-transform: rotateY(180deg) translateX(0px) translateY(0px) translateZ(112px);
+		-webkit-transform: rotateY(180deg) translateX(0px) translateY(0px) translateZ(112px);
+	
+	}
+	
+	#side6 {
+		transform: rotateX(-90deg) translateX(0px) translateY(0px) translateZ(112px);
+		-moz-transform: rotateX(-90deg) translateX(0px) translateY(0px) translateZ(112px);
+		-webkit-transform: rotateX(-90deg) translateX(0px) translateY(0px) translateZ(112px);
+	}
+
+
+	.projects article{
+		min-width: 50%;
+		width: 80%;
+		max-width:none;
+	}
+
+}
+
