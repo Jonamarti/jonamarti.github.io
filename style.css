@@ -6,7 +6,8 @@
 	font-family: 'Cambria';
 }
 
-html, body {
+html,
+body {
 	height: 100%;
 	min-height: 100%;
 }
@@ -23,16 +24,11 @@ header {
 	background-color: transparent;
 }
 
-
-
 body {
 	min-height: 100%;
 	height: fit-content;
 	background-color: transparent;
 }
-
-
-
 
 /* Background animation start */
 
@@ -84,7 +80,7 @@ body {
 
 /* Background anim finish */
 
-/* Projects */ 
+/* Projects */
 
 .projects {
 	margin-top: 2%;
@@ -111,9 +107,9 @@ article {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* Only for main page articles */ 
+/* Only for main page articles */
 
-.projects article{
+.projects article {
 	width: 25%;
 }
 
@@ -136,10 +132,10 @@ article p a:hover {
 	color: red;
 }
 
-article h2{
+article h2 {
 	background-color: aliceblue;
-	color:black;
-	margin-bottom:3%;
+	color: black;
+	margin-bottom: 3%;
 	width: 100%;
 }
 
@@ -152,10 +148,7 @@ p {
 	background-color: inherit;
 }
 
-
-
 /* Nav init */
-
 
 nav {
 	min-width: 100%;
@@ -166,7 +159,6 @@ ul {
 	margin-left: 2%;
 	margin-right: 2%;
 	list-style-type: none;
-
 	padding: 0;
 	overflow: hidden;
 
@@ -176,7 +168,8 @@ li {
 	float: left;
 }
 
-li a, .dropbtn {
+li a,
+.dropbtn {
 	display: inline-block;
 	color: white;
 	text-align: center;
@@ -184,7 +177,8 @@ li a, .dropbtn {
 	text-decoration: none;
 }
 
-li a:hover, .dropdown:hover .dropbtn {
+li a:hover,
+.dropdown:hover .dropbtn {
 	background-color: white;
 	color: black;
 }
@@ -201,7 +195,6 @@ li.dropdown {
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
 }
-
 
 .dropdown-content a {
 	color: black;
@@ -225,11 +218,8 @@ li.about {
 }
 
 a.about {
-
 	display: block;
-
 }
-
 
 .goUpAnchor {
 	position: fixed;
@@ -253,12 +243,10 @@ a.about {
 /* Active page */
 
 .activePage {
-
 	border: 0px solid;
 	border-bottom-width: inherit;
-
+	border-bottom: 3px solid white;
 }
-
 
 /* Active page end*/
 
@@ -271,7 +259,9 @@ a.about {
 	padding: 1%;
 }
 
-.present>h1, p, h2 {
+.present>h1,
+p,
+h2 {
 	background-color: transparent;
 	margin: 5%;
 }
@@ -289,7 +279,6 @@ button:hover {
 	transform: scale(1.5);
 	background: azure;
 	color: black;
-
 }
 
 /* Background animation */
@@ -353,22 +342,18 @@ button:hover {
 	transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(224px);
 	-moz-transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(224px);
 	-webkit-transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(224px);
-
-
 }
 
 #side2 {
 	transform: rotateY(-90deg) translateX(0px) translateY(0px) translateZ(224px);
 	-moz-transform: rotateY(-90deg) translateX(0px) translateY(0px) translateZ(224px);
 	-webkit-transform: rotateY(-90deg) translateX(0px) translateY(0px) translateZ(224px);
-
 }
 
 #side3 {
 	transform: translateX(0px) translateY(0px) translateZ(224px);
 	-moz-transform: translateX(0px) translateY(0px) translateZ(224px);
 	-webkit-transform: translateX(0px) translateY(0px) translateZ(224px);
-
 }
 
 #side4 {
@@ -414,12 +399,12 @@ footer img {
 
 /* Responsive website */
 
-@media only screen and (max-width:800px){
+@media only screen and (max-width:800px) {
 
-	.projects article{
+	.projects article {
 		/* min-width: 50%; */
 		width: 40%;
-		max-width:none;
+		max-width: none;
 	}
 }
 
@@ -446,7 +431,7 @@ footer img {
 	}
 
 	#D3Cube>div {
-		
+
 		width: 112px;
 		height: 112px;
 	}
@@ -455,37 +440,37 @@ footer img {
 		transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(112px);
 		-moz-transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(112px);
 		-webkit-transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(112px);
-	
+
 	}
-	
+
 	#side2 {
 		transform: rotateY(-90deg) translateX(0px) translateY(0px) translateZ(112px);
 		-moz-transform: rotateY(-90deg) translateX(0px) translateY(0px) translateZ(112px);
 		-webkit-transform: rotateY(-90deg) translateX(0px) translateY(0px) translateZ(112px);
-	
+
 	}
-	
+
 	#side3 {
 		transform: translateX(0px) translateY(0px) translateZ(112px);
 		-moz-transform: translateX(0px) translateY(0px) translateZ(112px);
 		-webkit-transform: translateX(0px) translateY(0px) translateZ(112px);
-	
+
 	}
-	
+
 	#side4 {
 		transform: rotateY(90deg) translateX(0px) translateY(0px) translateZ(112px);
 		-moz-transform: rotateY(90deg) translateX(0px) translateY(0px) translateZ(112px);
 		-webkit-transform: rotateY(90deg) translateX(0px) translateY(0px) translateZ(112px);
-	
+
 	}
-	
+
 	#side5 {
 		transform: rotateY(180deg) translateX(0px) translateY(0px) translateZ(112px);
 		-moz-transform: rotateY(180deg) translateX(0px) translateY(0px) translateZ(112px);
 		-webkit-transform: rotateY(180deg) translateX(0px) translateY(0px) translateZ(112px);
-	
+
 	}
-	
+
 	#side6 {
 		transform: rotateX(-90deg) translateX(0px) translateY(0px) translateZ(112px);
 		-moz-transform: rotateX(-90deg) translateX(0px) translateY(0px) translateZ(112px);
@@ -493,11 +478,10 @@ footer img {
 	}
 
 
-	.projects article{
+	.projects article {
 		min-width: 50%;
 		width: 80%;
-		max-width:none;
+		max-width: none;
 	}
 
 }
-
