@@ -1,91 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <title>Jonamarti personal page</title>
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="../style.css">
-	<title>Jonamarti personal page</title>
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png" />
+    <link rel="manifest" href="../site.webmanifest" />
+  </head>
 
+  <body>
+    <div id="wrapper">
+      <nav>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
 
-	<!-- Favicon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-	<link rel="manifest" href="../site.webmanifest">
+          <li class="dropdown">
+            <a href="#" class="dropbtn">Projects</a>
+            <div class="dropdown-content">
+              <a href="plant-blog.html">Plant blog</a>
+              <a href="todoapppurejs.html">To Do App</a>
+              <a href="numConverter.html">Number Converter</a>
+              <a href="matrixCalc.html">Matrix Calculator</a>
+              <a href="lifegame.html">Life Game</a>
+              <a href="projects.html" style="background: rgb(212, 212, 212); color: rgb(48, 48, 48)">See all projects</a>
+            </div>
+          </li>
+          <li class="about">
+            <a href="#" class="about activePage"> About </a>
+          </li>
+        </ul>
+      </nav>
 
-</head>
+      <!--  Background animation -->
 
-<body>
-	<div id="wrapper">
-		<nav>
-			<ul>
-				<li><a href="../index.html">Home</a></li>
+      <div id="wrapD3Cube">
+        <div id="D3Cube">
+          <div id="side1"></div>
+          <div id="side2"></div>
+          <div id="side3"></div>
+          <div id="side4"></div>
+          <div id="side5"></div>
+          <div id="side6"></div>
+        </div>
+      </div>
 
-				<li class="dropdown">
-					<a href="#" class="dropbtn">Projects</a>
-					<div class="dropdown-content">
-						
-						<a href="plant-blog.html">Plant blog</a>
-						<a href="todoapppurejs.html">To Do App</a>
-						<a href="numConverter.html">Number Converter</a>
-						<a href="matrixCalc.html">Matrix Calculator</a>
-						<a href="lifegame.html">Life Game</a>
-						<a href="projects.html" style="background:rgb(212, 212, 212);color:rgb(48, 48, 48)">See all projects</a>
-					</div>
-				</li>
-				<li class="about">
-					<a href="#" class="about activePage">
-						About
-					</a>
-				</li>
-			</ul>
-		</nav>
+      <div class="present">
+        <h1>About me</h1>
 
+        <p>
+          I'm a developer and automation specialist with a strong interest in both the technical and strategic sides of software delivery. I started
+          coding in college, exploring Python, Assembly, and Java, then moved into web development with HTML, CSS, and JavaScript.
+        </p>
+        <p>
+          Now I work on building reliable systems: automating tests with Cypress, managing CI/CD with Jenkins and GitLab and automating processes as
+          much as possible to reduce friction for teams. I've worked in projects using various languages and frameworks, as I try to not be
+          language-dependent but to be as agnostic as possible.
+        </p>
 
-
-
-		<!--  Background animation -->
-
-
-		<div id="wrapD3Cube">
-			<div id="D3Cube">
-				<div id="side1"></div>
-				<div id="side2"></div>
-				<div id="side3"></div>
-				<div id="side4"></div>
-				<div id="side5"></div>
-				<div id="side6"></div>
-			</div>
-		</div>
-
-		<div class="present">
-			<h1> About me</h1>
-
-			<p>I'm a developer and automation specialist with a strong interest in both the technical and strategic sides of software delivery. I started coding in college, exploring Python, Assembly, and Java, then moved into web development with HTML, CSS, and JavaScript.
-			</p>
-			<p>
-				Now I work on building reliable systems: automating tests with Cypress, managing CI/CD with Jenkins and GitLab and automating processes as much as possible to reduce friction for teams.
-				I've worked in projects using various languages and frameworks, as I try to not be language-dependent but to be as agnostic as possible.
-			</p>
-
-			<p>
-				On a personal token, I love nature and gardening, and I teach martial arts.
-				Feel free to contact me in the links provided below!
-			</p>
-		</div>
-		<br>
-
-
-	</div>
-	<footer>
-
-		<a href='https://github.com/Jonamarti'><img src="/images/GitHub-Mark-Light-32px.png"></a>
-		<a href='https://www.linkedin.com/in/jon-ander-martiarena/'><img src="/images/linkedin.png"></a>
-		<a href="mailto:jonamartiarena@gmail.com" > <img src="/images/email-icon-112.png"> </a>
-
-	</footer>
-</body>
-
+        <p>On a personal token, I love nature and gardening, and I teach martial arts. Feel free to contact me in the links provided below!</p>
+      </div>
+      <br />
+    </div>
+    <footer>
+      <a href="https://github.com/Jonamarti"><img src="/images/GitHub-Mark-Light-32px.png" /></a>
+      <a href="https://www.linkedin.com/in/jon-ander-martiarena/"><img src="/images/linkedin.png" /></a>
+      <a href="mailto:jonamartiarena@gmail.com"> <img src="/images/email-icon-112.png" /> </a>
+    </footer>
+  </body>
 </html>
