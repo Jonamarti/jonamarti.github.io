@@ -2,10 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="About Jon A. Martiarena - Full stack developer, QA automation specialist, martial arts instructor. Background in electronic engineering and self-taught web development.">
+    <meta property="og:title" content="About - Jon A. Martiarena">
+    <meta property="og:description" content="Full stack developer and QA automation specialist. Background in electronic engineering and self-taught web development.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jonamarti.github.io/pages/about.html">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" type="text/css" href="../style.css" />
-    <title>Jonamarti personal page</title>
+    <title>About - Jon A. Martiarena</title>
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
@@ -17,6 +23,11 @@
   <body>
     <div id="wrapper">
       <nav>
+        <button id="hamburger" class="hamburger" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
         <ul>
           <li><a href="../index.html">Home</a></li>
 
@@ -28,6 +39,7 @@
               <a href="numConverter.html">Number Converter</a>
               <a href="matrixCalc.html">Matrix Calculator</a>
               <a href="lifegame.html">Life Game</a>
+              <a href="enigma.html">Enigma VHDL</a>
               <a href="projects.html" style="background: rgb(212, 212, 212); color: rgb(48, 48, 48)">See all projects</a>
             </div>
           </li>
@@ -65,12 +77,81 @@
 
         <p>On a personal token, I love nature and gardening, and I teach martial arts. Feel free to contact me in the links provided below!</p>
       </div>
+
+      <section class="skills-section">
+        <h2>Technologies I've worked with</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3>Languages &amp; Low Level</h3>
+            <div class="tags"><span class="tag">Assembly (Motorola 68K)</span><span class="tag">Java</span><span class="tag">Python</span><span class="tag">VHDL</span><span class="tag">Scilab</span></div>
+          </div>
+          <div class="skill-category">
+            <h3>Frontend</h3>
+            <div class="tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">HTML / CSS</span><span class="tag">Redux / Sagas</span></div>
+          </div>
+          <div class="skill-category">
+            <h3>Backend &amp; Full Stack</h3>
+            <div class="tags"><span class="tag">Node.js / Express</span><span class="tag">MongoDB</span></div>
+          </div>
+          <div class="skill-category">
+            <h3>QA &amp; DevOps</h3>
+            <div class="tags"><span class="tag">Cypress</span><span class="tag">Jenkins</span><span class="tag">GitLab</span><span class="tag">Docker</span><span class="tag">Nginx</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="skills-section">
+        <h2>My Path</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <span class="timeline-date">College</span>
+            <div class="timeline-content">
+              <h3>Electronic Engineering</h3>
+              <p>Assembly (Motorola 68K), Java, Python, VHDL, Scilab - computer architecture fundamentals, physics and mathematics.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <span class="timeline-date">Self-taught</span>
+            <div class="timeline-content">
+              <h3>Web Development Foundations</h3>
+              <p>HTML, CSS, JavaScript. Wireshark, Git... Built typical first projects: Number Converter, To Do App. Trying to reinvent the wheel without relying on existing frameworks.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <span class="timeline-date">2022</span>
+            <div class="timeline-content">
+              <h3>Frontend Developer</h3>
+              <p>Left college and started working using React, TypeScript, Redux, CSS.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <span class="timeline-date">2023</span>
+            <div class="timeline-content">
+              <h3>QA, DevOps and Automation</h3>
+              <p>Pivoted to QA and automation, using Cypress for E2E testing, Jenkins for CI, and GitLab CI/CD, with a focus on building reliable systems and pipelines.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <span class="timeline-date">Current</span>
+            <div class="timeline-content">
+              <h3>Beyond</h3>
+              <p>Automating as much as possible while keeping quality high. Using AI as an acceleration tool for my projects.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <script src="../script.js"></script>
       <br />
     </div>
     <footer>
-      <a href="https://github.com/Jonamarti"><img src="/images/GitHub-Mark-Light-32px.png" /></a>
-      <a href="https://www.linkedin.com/in/jon-ander-martiarena/"><img src="/images/linkedin.png" /></a>
-      <a href="mailto:jonamartiarena@gmail.com"> <img src="/images/email-icon-112.png" /> </a>
+      <a href="https://github.com/Jonamarti"><img src="../images/GitHub-Mark-Light-32px.png" alt="GitHub profile" /></a>
+      <a href="https://www.linkedin.com/in/jon-ander-martiarena/"><img src="../images/linkedin.png" alt="LinkedIn profile" /></a>
     </footer>
   </body>
 </html>

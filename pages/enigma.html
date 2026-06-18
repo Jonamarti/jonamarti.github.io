@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Enigma VHDL — Máquina Enigma implementation in VHDL. Automated tests uncovered a bug in the inverse rotor equations.">
+	<meta property="og:title" content="Enigma VHDL — Jon A. Martiarena">
+	<meta property="og:description" content="VHDL implementation of an Enigma cipher machine. Exhaustive automated testing revealed a hidden bug in the rotor inverse logic.">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://jonamarti.github.io/pages/enigma.html">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="stylesheet" type="text/css" href="../style.css">
+	<title>Enigma VHDL — Jon A. Martiarena</title>
+
+	<!-- Favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+	<link rel="manifest" href="../site.webmanifest">
+
+	<style>
+		article.enigma {
+			max-width: 50%;
+			text-align: left;
+		}
+		article.enigma > * {
+			width: 100%;
+		}
+		article.enigma ul {
+			text-align: left;
+			margin-top: 1%;
+		}
+		article.enigma li {
+			float: none;
+		}
+		article.enigma .tags {
+			justify-content: flex-start;
+		}
+	</style>
+
+</head>
+
+<body>
+	<nav>
+		<button id="hamburger" class="hamburger" aria-label="Toggle navigation menu">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+		<ul>
+			<li><a href="../index.html">Home</a></li>
+
+			<li class="dropdown">
+				<a href="#" class="dropbtn activePage">Projects</a>
+				<div class="dropdown-content">
+					<a href="plant-blog.html">Plant blog</a>
+					<a href="todoapppurejs.html">To Do App</a>
+					<a href="numConverter.html">Number Converter</a>
+					<a href="matrixCalc.html">Matrix Calculator</a>
+					<a href="lifegame.html">Life Game</a>
+					<a href="enigma.html" style="background:rgb(135, 138, 138);color:white">Enigma VHDL</a>
+					<a href="projects.html" style="background:rgb(212, 212, 212);color:rgb(48, 48, 48)">See all projects</a>
+				</div>
+			</li>
+			<li class="about">
+				<a href="about.html" class="about">
+					About
+				</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div>
+		<section>
+			<h2>Enigma Machine in VHDL</h2>
+			<article class="enigma">
+				<img src="../images/maquinaenigma.png" alt="Enigma machine diagram">
+
+				<p>
+					A gate-level VHDL implementation of an Enigma cipher machine, built with discrete
+					logic equations. No arithmetic operators, just AND, OR, NOT gates and T flip-flops.
+					The design implements a 4-bit BCD datapath with a rotor, reflector, inverse rotor,
+					and a modulo-10 counter that advances with each key press.
+				</p>
+
+				<h3>Project background</h3>
+				<p>
+					This VHDL design was originally (2017) submitted as a project for a Digital Electronics course
+					at university. It implements a simplified Enigma with a 4-bit BCD datapath, using only
+					gate-level logic, no behavioural VHDL, no arithmetic operators, just discrete
+					equations mapped to AND, OR, NOT gates and T flip-flops. The idea was to demonstrate a deep understanding of digital logic design (Karnaugh maps and truth tables) and VHDL coding, while also implementing a historically significant cipher machine.
+				</p>
+				<p>
+					More than ten years later, I revisited the project and decided to write an  automated testbench for it. That is when the bug finally surfaced, a flaw that had
+					gone completely unnoticed during the original submission and demonstration and manual waveform	inspection. It took 200 automated assertions running every possible input combination to prove the cipher was broken.
+				</p>
+
+				<h3>The automated tests</h3>
+				<p>
+					Two properties were verified exhaustively across all 100 combinations
+					of counter position (0-9) and message value (0-9):
+				</p>
+				<ul>
+					<li><strong>Test 1</strong> : The reflector never maps a value to itself
+						(no fixed points in the permutation).</li>
+					<li><strong>Test 2</strong> : The machine is self-inverse:
+						<code>decode(encode(m)) == m</code> for every counter position.</li>
+				</ul>
+				<p>
+					The testbench automates counter positioning via reset + N clock cycles,
+					applies stimulus in real time, and uses <code>assert</code> statements so
+					pass/fail is decided by the simulator, not a human looking at a waveform.
+				</p>
+
+				<h3>The bug</h3>
+				<p>
+					Test 1 passed: the reflector has no fixed points over 100 cases.
+					But Test 2 failed: <strong>80 out of 100</strong> cases violated
+					the self-inverse property. The 20 that passed were all at counter position 0.
+				</p>
+				<p>
+					The root cause is in the inverse rotor equations (<code>f3..f0</code>).
+					In a real Enigma, the return current flows through the <em>same</em> rotor
+					in reverse, effectively applying the inverse permutation. But the VHDL
+					design implements the inverse rotor as a <em>separate</em> hardcoded set
+					of equations that do <strong>not</strong> match the inverse of the forward
+					rotor. The rotor maps <code>s → ro</code> with one permutation; the
+					inverse rotor maps <code>r → f</code> with a completely different one.
+					They are not inverses, so the machine cannot decode its own ciphertext.
+				</p>
+
+				<h3>Why has this random finding stuck with me?</h3>
+				<p>
+					The original testbench I wrote back in university had maybe 6 manual test cases
+					and no assertions. I loaded the waveforms and looked at them right as I was giving an explanation about the project. Everything looked fine. The bug didn't appear in the submission nor in the subsequent years when I opened the files from time to time. It was only when I wrote a new testbench with 200 assertions that the bug was finally revealed.
+					Today (9 years after the original submission) I was implementing the automated test cases for this project as a reflex from my current job (I've been writing automated test for years now), and didn't even think I was going to catch one right in front of me. The one thing I take from this in the area of software development is to right the test at the same time (or even before, better!) thna the actual code. You familiarity with the design wont help you catch everything.
+				</p>
+
+				<h3>Output</h3>
+				<pre><code>Test 1: PASSED (100 cases, no fixed points)
+Test 2: FAILED (80/100 mismatch(es))
+
+  c=1 m=0 enc=2 dec=9   c=1 m=2 enc=9 dec=6
+  c=1 m=3 enc=5 dec=0   c=1 m=5 enc=0 dec=2
+  c=1 m=6 enc=8 dec=3   c=1 m=8 enc=3 dec=5
+  c=1 m=9 enc=6 dec=8   c=2 m=0 enc=1 dec=9
+  ... (80 failures total)</code></pre>
+
+				<h3>Tech stack</h3>
+				<div class="tags">
+					<span class="tag">VHDL</span>
+					<span class="tag">GHDL</span>
+					<span class="tag">Enigma</span>
+					<span class="tag">Digital logic</span>
+					<span class="tag">Automated testing</span>
+				</div>
+			</article>
+		</section>
+	</div>
+
+	<footer>
+		Link to project:  <a href="https://github.com/Jonamarti/enigma">  <img src="../images/GitHub-Mark-Light-32px.png" alt="GitHub repository"> </a>
+	</footer>
+
+<script src="../script.js"></script>
+</body>
+
+</html>

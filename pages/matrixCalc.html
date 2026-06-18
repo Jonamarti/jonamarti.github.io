@@ -5,9 +5,14 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Plant blog</title>
+	<meta name="description" content="Matrix Calculator — Perform matrix operations in the browser: addition, multiplication, determinant, rotation, transposition.">
+	<meta property="og:title" content="Matrix Calculator — Jon A. Martiarena">
+	<meta property="og:description" content="Browser-based matrix calculator with addition, multiplication, determinant, rotation and transposition.">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://jonamarti.github.io/pages/matrixCalc.html">
+	<meta name="twitter:card" content="summary_large_image">
+	<title>Matrix Calculator — Jon A. Martiarena</title>
 	<link rel="stylesheet" type="text/css" href="../style.css">
-	<title>Matrix Calculator</title>
 
 	<!-- Favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
@@ -20,6 +25,11 @@
 
 <body>
 	<nav>
+		<button id="hamburger" class="hamburger" aria-label="Toggle navigation menu">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
 		<ul>
 			<li><a href="../index.html">Home</a></li>
 
@@ -31,6 +41,7 @@
 					<a href="numConverter.html">Number Converter</a>
 					<a href="matrixCalc.html" style="background:rgb(135, 138, 138);color:white">Matrix Calculator</a>
 					<a href="lifegame.html">Life Game</a>
+					<a href="enigma.html">Enigma VHDL</a>
 					<a href="projects.html" style="background:rgb(212, 212, 212);color:rgb(48, 48, 48)">See all projects</a>
 				</div>
 			</li>
@@ -47,7 +58,7 @@
 			<h2>Matrix Calculator </h2>
 			<article>
 
-				<img src="../images/matrixCalc.PNG">
+				<img src="../images/matrixCalc.PNG" alt="Matrix Calculator screenshot">
 				<p>This app lets the user perform classic matrix operations, such as addition, multiplication, 
 					getting a determinant and so on, but also to rotate, traspose and other atypical operations.
 					This was originally part of a bigger project centered around performing multiplication of big matrices,
@@ -59,7 +70,7 @@
 	</div>
 
 	<footer>
-		Link to project page:  <a href="https://github.com/Jonamarti/MatrixCalc">  <img src="../images/GitHub-Mark-Light-32px.png"> </a>
+		Link to project page:  <a href="https://github.com/Jonamarti/MatrixCalc">  <img src="../images/GitHub-Mark-Light-32px.png" alt="GitHub repository"> </a>
 		<br>
 		Link to the app: <a href="https://jonamarti.github.io/MatrixCalc/script/index.html">Matrix Calculator</a>
 		<br>
@@ -67,6 +78,7 @@
 
 
 
+<script src="../script.js"></script>
 </body>
 
 </html>

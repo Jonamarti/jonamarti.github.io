@@ -1,0 +1,21 @@
+{
+  "name": "Jon A. Martiarena — Portfolio",
+  "short_name": "Jonamarti",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#131111",
+  "theme_color": "#131111",
+  "description": "Full stack developer & QA automation specialist",
+  "icons": [
+    {
+      "src": "android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

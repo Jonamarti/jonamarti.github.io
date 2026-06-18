@@ -5,9 +5,14 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Plant blog</title>
+	<meta name="description" content="Life Game — Conway's Game of Life implemented in React. Cellular automaton with emerging patterns.">
+	<meta property="og:title" content="Life Game — Jon A. Martiarena">
+	<meta property="og:description" content="Conway's Game of Life implemented in React. Watch cellular automaton patterns emerge.">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://jonamarti.github.io/pages/lifegame.html">
+	<meta name="twitter:card" content="summary_large_image">
+	<title>Life Game — Jon A. Martiarena</title>
 	<link rel="stylesheet" type="text/css" href="../style.css">
-	<title>Matrix Calculator</title>
 
 	<!-- Favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
@@ -20,6 +25,11 @@
 
 <body>
 	<nav>
+		<button id="hamburger" class="hamburger" aria-label="Toggle navigation menu">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
 		<ul>
 			<li><a href="../index.html">Home</a></li>
 
@@ -31,6 +41,7 @@
 					<a href="numConverter.html">Number Converter</a>
 					<a href="matrixCalc.html">Matrix Calculator</a>
 					<a href="lifegame.html" style="background:rgb(135, 138, 138);color:white">Life Game</a>
+					<a href="enigma.html">Enigma VHDL</a>
 					<a href="projects.html" style="background:rgb(212, 212, 212);color:rgb(48, 48, 48)">See all projects</a>
 				</div>
 			</li>
@@ -47,7 +58,7 @@
 			<h2>Life Game </h2>
 			<article>
 
-				<img src="../images/lifegamereact.PNG">
+				<img src="../images/lifegamereact.PNG" alt="Life Game React screenshot">
 				<p>
 					Implementation in React of the pioneering Game of Life by John Conway. 
 					Each cell will die, stay alive, or be born depending on the number of alive cells.
@@ -60,11 +71,12 @@
 	</div>
 
 	<footer>
-		Link to project page:  <a href="https://github.com/Jonamarti/LifeGame">  <img src="../images/GitHub-Mark-Light-32px.png"> </a>
+		Link to project page:  <a href="https://github.com/Jonamarti/LifeGame">  <img src="../images/GitHub-Mark-Light-32px.png" alt="GitHub repository"> </a>
 	</footer>
 
 
 
+<script src="../script.js"></script>
 </body>
 
 </html>

@@ -5,8 +5,14 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Number Converter — Convert numbers between base 2, 10 and 16. Vanilla JS app with multilingual UI and CI/CD pipeline with Cypress.">
+	<meta property="og:title" content="Number Converter — Jon A. Martiarena">
+	<meta property="og:description" content="Base converter (2, 10, 16) with multilingual UI, CI/CD pipeline, Cypress tests, Docker + Nginx deployment.">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://jonamarti.github.io/pages/numConverter.html">
+	<meta name="twitter:card" content="summary_large_image">
 	<link rel="stylesheet" type="text/css" href="../style.css">
-	<title>Matrix Calculator</title>
+	<title>Number Converter — Jon A. Martiarena</title>
 
 	<!-- Favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
@@ -19,17 +25,23 @@
 
 <body>
 	<nav>
+		<button id="hamburger" class="hamburger" aria-label="Toggle navigation menu">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
 		<ul>
 			<li><a href="../index.html">Home</a></li>
 
 			<li class="dropdown">
 				<a href="#" class="dropbtn activePage">Projects</a>
 				<div class="dropdown-content">
-					<a href="plant-blog.html">Number Converter</a>
+					<a href="numConverter.html">Number Converter</a>
 					<a href="todoapppurejs.html" >To Do App</a>
 					<a href="numConverter.html" style="background:rgb(135, 138, 138);color:white">Number Converter</a>
 					<a href="matrixCalc.html">Matrix Calculator</a>
 					<a href="lifegame.html">Life Game</a>
+					<a href="enigma.html">Enigma VHDL</a>
 					<a href="projects.html" style="background:rgb(212, 212, 212);color:rgb(48, 48, 48)">See all projects</a>
 				</div>
 			</li>
@@ -46,7 +58,7 @@
 			<h2>Number Converter </h2>
 			<article>
 
-				<img src="../images/numconv.PNG">
+				<img src="../images/numconv.PNG" alt="Number Converter screenshot">
 				<p>This simple calculator changes numbers from one base to another. It can convert from base 2 to 10 and 16, and vice versa. The app is written in vanilla JS, and the design is made with CSS. The main goal of this project was to learn HTML, CSS and JS.
 					It was a good opportunity to practice the use of event listeners, and to get familiar with the DOM and cookies. It also changes the language of the text in the page when the user clicks on the language dropdown buttons. 
 					In 2025 I have implemented a CI pipeline, which triggers Cypress tests on every push to the main or other branches. Also triggers the tests on pull requests. The pipeline starts a Nginx server in a Docker container, and the results are shown in the GitHub actions tab. The app is hosted on GitHub pages.
@@ -56,7 +68,7 @@
 	</div>
 
 	<footer>
-		Link to project page:  <a href="https://github.com/Jonamarti/NumConverter">  <img src="../images/GitHub-Mark-Light-32px.png"> </a>
+		Link to project page:  <a href="https://github.com/Jonamarti/NumConverter">  <img src="../images/GitHub-Mark-Light-32px.png" alt="GitHub repository"> </a>
 		<br>
 		Link to the app: <a href="https://jonamarti.github.io/NumberConverter/script/index.html">Number Converter</a>
 		<br>
@@ -64,6 +76,7 @@
 
 
 
+<script src="../script.js"></script>
 </body>
 
 </html>
