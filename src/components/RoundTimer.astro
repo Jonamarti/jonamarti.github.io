@@ -1,0 +1,262 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const fields = [
+	{ name: 'rounds', label: t('timer.rounds'), value: 5, min: 1, max: 99, step: 1, unit: '' },
+	{ name: 'work', label: t('timer.work'), value: 180, min: 5, max: 3600, step: 5, unit: t('timer.seconds') },
+	{ name: 'rest', label: t('timer.rest'), value: 60, min: 0, max: 3600, step: 5, unit: t('timer.seconds') },
+	{ name: 'prepare', label: t('timer.prepare'), value: 10, min: 0, max: 600, step: 5, unit: t('timer.seconds') },
+];
+---
+
+<div
+	class="timer"
+	data-timer
+	data-ready={t('timer.ready')}
+	data-prepare={t('timer.preparePhase')}
+	data-work={t('timer.workPhase')}
+	data-rest={t('timer.restPhase')}
+	data-done={t('timer.done')}
+	data-round-of={t('timer.roundOf')}
+	data-start={t('timer.start')}
+	data-pause={t('timer.pause')}
+	data-resume={t('timer.resume')}
+>
+	<p class="timer-phase" data-phase role="status" aria-live="polite">{t('timer.ready')}</p>
+	<p class="timer-clock" data-clock>03:00</p>
+	<p class="timer-round" data-round></p>
+
+	<div class="timer-controls">
+		<button type="button" data-toggle>{t('timer.start')}</button>
+		<button type="button" data-reset>{t('timer.reset')}</button>
+	</div>
+
+	<form class="timer-settings" data-settings>
+		<fieldset>
+			<legend>{t('timer.legend')}</legend>
+			{
+				fields.map((field) => (
+					<label>
+						<span>
+							{field.label}
+							{field.unit && <small> ({field.unit})</small>}
+						</span>
+						<input type="number" name={field.name} value={field.value} min={field.min} max={field.max} step={field.step} />
+					</label>
+				))
+			}
+			<label class="timer-sound">
+				<input type="checkbox" name="sound" checked />
+				<span>{t('timer.sound')}</span>
+			</label>
+		</fieldset>
+	</form>
+</div>
+
+<script>
+	type Phase = 'idle' | 'prepare' | 'work' | 'rest' | 'done';
+
+	const root = document.querySelector<HTMLElement>('[data-timer]');
+
+	if (root) {
+		// Function declarations are hoisted, so the narrowing from the guard does not reach them.
+		const timer = root;
+		const phaseEl = root.querySelector<HTMLElement>('[data-phase]')!;
+		const clockEl = root.querySelector<HTMLElement>('[data-clock]')!;
+		const roundEl = root.querySelector<HTMLElement>('[data-round]')!;
+		const toggleEl = root.querySelector<HTMLButtonElement>('[data-toggle]')!;
+		const resetEl = root.querySelector<HTMLButtonElement>('[data-reset]')!;
+		const form = root.querySelector<HTMLFormElement>('[data-settings]')!;
+		const labels = timer.dataset;
+		const storageKey = 'round-timer-settings';
+
+		let phase: Phase = 'idle';
+		let round = 1;
+		let endsAt = 0;
+		let remaining = 0;
+		let ticker: number | undefined;
+		let audio: AudioContext | undefined;
+
+		function settings() {
+			const data = new FormData(form);
+			return {
+				rounds: Number(data.get('rounds')) || 1,
+				work: Number(data.get('work')) || 1,
+				rest: Number(data.get('rest')) || 0,
+				prepare: Number(data.get('prepare')) || 0,
+				sound: data.get('sound') === 'on',
+			};
+		}
+
+		function restore() {
+			try {
+				const saved = JSON.parse(localStorage.getItem(storageKey) ?? '{}');
+				for (const [name, value] of Object.entries(saved)) {
+					const field = form.elements.namedItem(name);
+					if (!(field instanceof HTMLInputElement)) continue;
+					if (field.type === 'checkbox') {
+						field.checked = Boolean(value);
+					} else {
+						field.value = String(value);
+					}
+				}
+			} catch {
+				// A corrupt entry is not worth failing over, the defaults are in the markup.
+			}
+		}
+
+		function persist() {
+			localStorage.setItem(storageKey, JSON.stringify(settings()));
+		}
+
+		function beep(frequency: number, duration: number) {
+			if (!settings().sound) return;
+			audio ??= new AudioContext();
+			const oscillator = audio.createOscillator();
+			const gain = audio.createGain();
+			oscillator.frequency.value = frequency;
+			oscillator.type = 'sine';
+			gain.gain.setValueAtTime(0.25, audio.currentTime);
+			gain.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + duration);
+			oscillator.connect(gain).connect(audio.destination);
+			oscillator.start();
+			oscillator.stop(audio.currentTime + duration);
+		}
+
+		function format(seconds: number) {
+			const safe = Math.max(0, Math.ceil(seconds));
+			const minutes = Math.floor(safe / 60);
+			return `${String(minutes).padStart(2, '0')}:${String(safe % 60).padStart(2, '0')}`;
+		}
+
+		function paint(secondsLeft: number) {
+			const { rounds } = settings();
+			clockEl.textContent = format(secondsLeft);
+			timer.dataset.phaseName = phase;
+
+			if (phase === 'idle') {
+				phaseEl.textContent = labels.ready!;
+				roundEl.textContent = '';
+			} else if (phase === 'done') {
+				phaseEl.textContent = labels.done!;
+				roundEl.textContent = '';
+			} else {
+				phaseEl.textContent = phase === 'prepare' ? labels.prepare! : phase === 'work' ? labels.work! : labels.rest!;
+				roundEl.textContent = labels.roundOf!.replace('{n}', String(round)).replace('{total}', String(rounds));
+			}
+		}
+
+		function enter(next: Phase) {
+			const config = settings();
+			phase = next;
+
+			if (next === 'done') {
+				stop();
+				beep(880, 0.9);
+				paint(0);
+				toggleEl.textContent = labels.start!;
+				return;
+			}
+
+			const length = next === 'prepare' ? config.prepare : next === 'work' ? config.work : config.rest;
+			endsAt = Date.now() + length * 1000;
+			beep(next === 'work' ? 880 : 440, 0.35);
+			paint(length);
+		}
+
+		function advance() {
+			const config = settings();
+			if (phase === 'prepare') return enter('work');
+			if (phase === 'work') {
+				if (round >= config.rounds) return enter('done');
+				if (config.rest === 0) {
+					round++;
+					return enter('work');
+				}
+				return enter('rest');
+			}
+			if (phase === 'rest') {
+				round++;
+				return enter('work');
+			}
+		}
+
+		let lastWhole = -1;
+
+		function tick() {
+			const secondsLeft = (endsAt - Date.now()) / 1000;
+			const whole = Math.ceil(secondsLeft);
+
+			if (whole !== lastWhole) {
+				lastWhole = whole;
+				if (whole > 0 && whole <= 3) beep(660, 0.12);
+			}
+
+			if (secondsLeft <= 0) {
+				advance();
+				return;
+			}
+
+			paint(secondsLeft);
+		}
+
+		// Recomputed from a timestamp on every tick, so a throttled background tab drifts the
+		// display but never the schedule.
+		function run() {
+			ticker = window.setInterval(tick, 200);
+		}
+
+		function stop() {
+			if (ticker !== undefined) window.clearInterval(ticker);
+			ticker = undefined;
+		}
+
+		function running() {
+			return ticker !== undefined;
+		}
+
+		toggleEl.addEventListener('click', () => {
+			if (running()) {
+				remaining = endsAt - Date.now();
+				stop();
+				toggleEl.textContent = labels.resume!;
+				return;
+			}
+
+			if (phase === 'idle' || phase === 'done') {
+				round = 1;
+				lastWhole = -1;
+				enter(settings().prepare > 0 ? 'prepare' : 'work');
+			} else {
+				endsAt = Date.now() + remaining;
+			}
+
+			run();
+			toggleEl.textContent = labels.pause!;
+		});
+
+		resetEl.addEventListener('click', () => {
+			stop();
+			phase = 'idle';
+			round = 1;
+			lastWhole = -1;
+			toggleEl.textContent = labels.start!;
+			paint(settings().work);
+		});
+
+		form.addEventListener('change', () => {
+			persist();
+			if (!running() && phase === 'idle') paint(settings().work);
+		});
+
+		restore();
+		paint(settings().work);
+	}
+</script>

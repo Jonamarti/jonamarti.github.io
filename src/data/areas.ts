@@ -1,6 +1,6 @@
 import type { Lang } from '../i18n/utils';
 
-export const areaIds = ['electronics', 'qa', 'tinkering', 'web'] as const;
+export const areaIds = ['electronics', 'qa', 'tinkering', 'web', 'martial-arts'] as const;
 
 export type AreaId = (typeof areaIds)[number];
 
@@ -85,6 +85,24 @@ export const areas: Area[] = [
 			es: [
 				'React, TypeScript y Redux en el front, Node y Express con MongoDB detrás, y Astro para esta web. Intento no depender de ningún framework en concreto, así que varios de estos proyectos reinventan la rueda a propósito en JavaScript pelado.',
 				'El orden de abajo es más o menos el orden en que los construí, lo que sirve también como registro de lo que estaba aprendiendo en cada momento.',
+			],
+		},
+	},
+	{
+		id: 'martial-arts',
+		name: { en: 'Martial arts', es: 'Artes marciales' },
+		summary: {
+			en: 'Judo, Sambo, MMA and grappling, training and teaching.',
+			es: 'Judo, Sambo, MMA y grappling, entrenando y enseñando.',
+		},
+		intro: {
+			en: [
+				'I have been training all my life and teaching MMA, Sambo and grappling since 2018.',
+				'Teaching is what changed how I work. Breaking a technique down for someone who cannot do it yet forces you to find the one detail that is actually failing, which is the same move as isolating a bug: stop looking at the whole thing, change one variable, watch what happens.',
+			],
+			es: [
+				'Llevo entrenando toda la vida y doy clases de MMA, Sambo y grappling desde 2018.',
+				'Enseñar es lo que me cambió la forma de trabajar. Descomponer una técnica para alguien que todavía no la saca te obliga a encontrar el detalle concreto que está fallando, que es el mismo movimiento que aislar un fallo en el código: dejar de mirar el conjunto, cambiar una variable y ver qué pasa.',
 			],
 		},
 	},

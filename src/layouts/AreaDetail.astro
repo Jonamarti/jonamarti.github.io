@@ -23,9 +23,12 @@ const projects = (await getCollection('projects', ({ id, data }) => id.startsWit
 const notes = (await getCollection('notes', ({ id, data }) => id.startsWith(`${lang}/`) && data.area === areaId)).sort(
 	(a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
+
+// The summary alone is too short to work as a meta description, so the opening paragraph tops it up.
+const description = `${area.summary[lang]} ${area.intro[lang][0]}`.slice(0, 155);
 ---
 
-<Base lang={lang} title={`${area.name[lang]} - Jon A. Martiarena`} description={area.summary[lang]}>
+<Base lang={lang} title={`${area.name[lang]} - Jon A. Martiarena`} description={description}>
 	<div class="present">
 		<h1>{area.name[lang]}</h1>
 		{area.intro[lang].map((paragraph) => <p>{paragraph}</p>)}

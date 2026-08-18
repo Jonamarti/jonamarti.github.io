@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import { render, type CollectionEntry } from 'astro:content';
 import AreaBadges from '../components/AreaBadges.astro';
+import RoundTimer from '../components/RoundTimer.astro';
 import Base from './Base.astro';
 import { useTranslations, type Lang } from '../i18n/utils';
 
@@ -13,7 +14,7 @@ interface Props {
 const { lang, entry } = Astro.props;
 const t = useTranslations(lang);
 const { Content } = await render(entry);
-const { title, description, image, imageAlt, animated, tags, repo, demo, demoLabel, longform, areas } = entry.data;
+const { title, description, image, imageAlt, animated, tags, repo, demo, demoLabel, longform, areas, widget } = entry.data;
 ---
 
 <Base lang={lang} title={`${title} - Jon A. Martiarena`} description={description}>
@@ -22,7 +23,10 @@ const { title, description, image, imageAlt, animated, tags, repo, demo, demoLab
 
 		<article class:list={[{ longform }]}>
 			{
-				animated ? (
+				// A live widget replaces the screenshot here; the image still fronts the card on the index.
+				widget === 'round-timer' ? (
+					<RoundTimer lang={lang} />
+				) : animated ? (
 					<img src={image.src} alt={imageAlt} width={image.width} height={image.height} decoding="async" />
 				) : (
 					<Image src={image} alt={imageAlt} widths={[600, 1000]} sizes="(max-width: 800px) 90vw, 600px" decoding="async" />

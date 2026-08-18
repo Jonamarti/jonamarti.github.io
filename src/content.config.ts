@@ -25,6 +25,8 @@ const projects = defineCollection({
 		order: z.number(),
 		/** Cards without a body of their own stay on the index and get no detail page. */
 		detail: z.boolean().default(true),
+		/** Interactive demo rendered inside the project page. */
+		widget: z.enum(['round-timer']).optional(),
 		/** Wide, left aligned layout for the longer write ups. */
 		longform: z.boolean().default(false),
 	}),

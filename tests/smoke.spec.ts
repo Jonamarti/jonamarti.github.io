@@ -1,10 +1,10 @@
 import { expect, test } from '@playwright/test';
 import { openNav } from './nav';
 
-const areaIds = ['electronics', 'qa', 'tinkering', 'web'];
+const areaIds = ['electronics', 'qa', 'tinkering', 'web', 'martial-arts'];
 const areaRoutes = areaIds.map((id) => `/areas/${id}/`);
 
-const projectSlugs = ['plant-blog', 'life-game', 'matrix-calculator', 'number-converter', 'todo-app', 'enigma-vhdl'];
+const projectSlugs = ['plant-blog', 'life-game', 'matrix-calculator', 'number-converter', 'todo-app', 'enigma-vhdl', 'round-timer'];
 
 const routes = [
 	'/',

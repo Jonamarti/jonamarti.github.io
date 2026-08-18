@@ -2,7 +2,7 @@
 import { render, type CollectionEntry } from 'astro:content';
 import Base from './Base.astro';
 import { findArea } from '../data/areas';
-import { localizePath, useTranslations, type Lang } from '../i18n/utils';
+import { localizePath, type Lang } from '../i18n/utils';
 
 interface Props {
 	lang: Lang;
@@ -10,7 +10,6 @@ interface Props {
 }
 
 const { lang, entry } = Astro.props;
-const t = useTranslations(lang);
 const { Content } = await render(entry);
 const { title, description, area, date, tags } = entry.data;
 

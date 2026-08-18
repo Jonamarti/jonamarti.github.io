@@ -9,6 +9,8 @@ const routes = [
 	'/projects/enigma-vhdl/',
 	'/areas/',
 	'/areas/qa/',
+	'/projects/round-timer/',
+	'/areas/martial-arts/',
 	'/notes/testing-this-site/',
 	'/es/',
 	'/es/about/',
@@ -16,6 +18,7 @@ const routes = [
 	'/es/projects/enigma-vhdl/',
 	'/es/areas/',
 	'/es/areas/qa/',
+	'/es/projects/round-timer/',
 	'/es/notes/testing-this-site/',
 ];
 
