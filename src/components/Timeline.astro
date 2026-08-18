@@ -1,0 +1,25 @@
+---
+import { timeline } from '../data/timeline';
+import type { Lang } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<div class="timeline">
+	{
+		timeline.map((entry) => (
+			<div class="timeline-item">
+				<div class="timeline-dot" />
+				<span class="timeline-date">{entry.date[lang]}</span>
+				<div class="timeline-content">
+					<h3>{entry.title[lang]}</h3>
+					<p>{entry.body[lang]}</p>
+				</div>
+			</div>
+		))
+	}
+</div>

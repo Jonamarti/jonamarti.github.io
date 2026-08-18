@@ -1,0 +1,19 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<footer>
+	<a href="https://github.com/Jonamarti">
+		<img src="/images/GitHub-Mark-Light-32px.png" alt={t('footer.github')} width="32" height="32" />
+	</a>
+	<a href="https://www.linkedin.com/in/jon-ander-martiarena/">
+		<img src="/images/linkedin.png" alt={t('footer.linkedin')} width="32" height="32" />
+	</a>
+</footer>

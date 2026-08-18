@@ -1,0 +1,19 @@
+---
+import Base from './Base.astro';
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Base lang={lang} title={t('home.title')} description={t('home.description')} showPerson>
+	<div class="present">
+		<h1>{t('home.greeting')}</h1>
+		<h2>{t('home.role')}</h2>
+		<p>{t('home.intro')}</p>
+	</div>
+</Base>

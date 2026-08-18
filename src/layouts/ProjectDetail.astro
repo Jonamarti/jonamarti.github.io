@@ -1,0 +1,55 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Base from './Base.astro';
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+	entry: CollectionEntry<'projects'>;
+}
+
+const { lang, entry } = Astro.props;
+const t = useTranslations(lang);
+const { Content } = await render(entry);
+const { title, description, image, imageAlt, tags, repo, demo, demoLabel, longform } = entry.data;
+---
+
+<Base lang={lang} title={`${title} — Jon A. Martiarena`} description={description}>
+	<section>
+		<h1>{title}</h1>
+
+		<article class:list={[{ longform }]}>
+			<img src={image} alt={imageAlt} />
+
+			<Content />
+
+			{
+				tags.length > 0 && (
+					<div class="tags">
+						{tags.map((tag) => (
+							<span class="tag">{tag}</span>
+						))}
+					</div>
+				)
+			}
+
+			{
+				(repo || demo) && (
+					<p class="project-links">
+						{repo && (
+							<>
+								{t('footer.projectLink')} <a href={repo}>{repo.replace('https://github.com/', '')}</a>
+							</>
+						)}
+						{demo && (
+							<>
+								<br />
+								{t('footer.appLink')} <a href={demo}>{demoLabel ?? title}</a>
+							</>
+						)}
+					</p>
+				)
+			}
+		</article>
+	</section>
+</Base>

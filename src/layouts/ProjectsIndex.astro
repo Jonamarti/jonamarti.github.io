@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import Base from './Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { localizePath, useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const entries = await getCollection('projects', ({ id }) => id.startsWith(`${lang}/`));
+entries.sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base lang={lang} title={t('projects.title')} description={t('projects.description')}>
+	<header><h1>{t('projects.heading')}</h1></header>
+	<p>{t('projects.intro')}</p>
+
+	<section class="projects">
+		{
+			entries.map((entry) => (
+				<ProjectCard
+					title={entry.data.title}
+					summary={entry.data.summary}
+					image={entry.data.image}
+					imageAlt={entry.data.imageAlt}
+					narrowImage={entry.data.narrowImage}
+					href={entry.data.detail ? localizePath(`/projects/${entry.id.slice(lang.length + 1)}/`, lang) : undefined}
+					readMore={t('projects.readMore')}
+				/>
+			))
+		}
+	</section>
+
+	<div class="goUpAnchor">
+		<a href="#main-content" aria-label={t('goUp.label')}>&#8593;</a>
+	</div>
+</Base>

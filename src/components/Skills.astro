@@ -1,0 +1,25 @@
+---
+import { skillGroups } from '../data/skills';
+import type { Lang } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<div class="skills-grid">
+	{
+		skillGroups.map((group) => (
+			<div class="skill-category">
+				<h3>{group.title[lang]}</h3>
+				<div class="tags">
+					{group.items.map((item) => (
+						<span class="tag">{item}</span>
+					))}
+				</div>
+			</div>
+		))
+	}
+</div>

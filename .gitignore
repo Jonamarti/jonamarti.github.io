@@ -8,3 +8,8 @@ Thumbs.db
 
 # Misc
 *.log
+
+# Build
+node_modules/
+dist/
+.astro/

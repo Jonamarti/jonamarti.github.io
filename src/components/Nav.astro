@@ -1,0 +1,120 @@
+---
+import { getCollection } from 'astro:content';
+import { localizePath, otherLang, stripLangPrefix, useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+	/** Overrides the language switch target for pages that have no counterpart. */
+	swapHref?: string;
+}
+
+const { lang, swapHref } = Astro.props;
+const t = useTranslations(lang);
+
+const here = Astro.url.pathname.replace(/\/?$/, '/');
+const isCurrent = (path: string) => here === path;
+
+const home = localizePath('/', lang);
+const about = localizePath('/about/', lang);
+const projectsIndex = localizePath('/projects/', lang);
+
+const entries = await getCollection('projects', ({ id, data }) => id.startsWith(`${lang}/`) && data.detail);
+entries.sort((a, b) => a.data.order - b.data.order);
+
+const projectLinks = entries.map((entry) => ({
+	title: entry.data.title,
+	href: localizePath(`/projects/${entry.id.slice(lang.length + 1)}/`, lang),
+}));
+
+const inProjects = here.startsWith(projectsIndex);
+const swapUrl = swapHref ?? localizePath(stripLangPrefix(here), otherLang(lang));
+---
+
+<nav aria-label={t('nav.label')}>
+	<button id="hamburger" class="hamburger" aria-label={t('nav.toggle')} aria-expanded="false" aria-controls="nav-menu">
+		<span></span>
+		<span></span>
+		<span></span>
+	</button>
+	<ul id="nav-menu">
+		<li><a href={home} class={isCurrent(home) ? 'activePage' : undefined}>{t('nav.home')}</a></li>
+
+		<li class="dropdown">
+			<button type="button" class:list={['dropbtn', { activePage: inProjects }]} aria-haspopup="true" aria-expanded="false">
+				{t('nav.projects')}
+			</button>
+			<div class="dropdown-content">
+				{
+					projectLinks.map((project) => (
+						<a href={project.href} class={isCurrent(project.href) ? 'current-page' : undefined}>
+							{project.title}
+						</a>
+					))
+				}
+				<a href={projectsIndex} class:list={['see-all', { 'current-page': isCurrent(projectsIndex) }]}>
+					{t('nav.seeAll')}
+				</a>
+			</div>
+		</li>
+
+		<li class="nav-end"><a href={about} class={isCurrent(about) ? 'activePage' : undefined}>{t('nav.about')}</a></li>
+		<li class="nav-end"><a href={swapUrl} lang={otherLang(lang)} hreflang={otherLang(lang)}>{t('nav.language')}</a></li>
+	</ul>
+</nav>
+
+<script>
+	const hamburger = document.getElementById('hamburger');
+	const navMenu = document.getElementById('nav-menu');
+	const dropdowns = Array.from(document.querySelectorAll<HTMLElement>('.dropdown'));
+
+	function closeMenu() {
+		navMenu?.classList.remove('show');
+		hamburger?.classList.remove('open');
+		hamburger?.setAttribute('aria-expanded', 'false');
+	}
+
+	function closeDropdowns(except?: HTMLElement) {
+		for (const dropdown of dropdowns) {
+			if (dropdown === except) continue;
+			dropdown.classList.remove('dropdown-open');
+			dropdown.querySelector('.dropbtn')?.setAttribute('aria-expanded', 'false');
+		}
+	}
+
+	hamburger?.addEventListener('click', () => {
+		const open = navMenu?.classList.toggle('show');
+		hamburger.classList.toggle('open', open);
+		hamburger.setAttribute('aria-expanded', String(Boolean(open)));
+	});
+
+	for (const dropdown of dropdowns) {
+		const button = dropdown.querySelector('.dropbtn');
+		button?.addEventListener('click', () => {
+			const open = dropdown.classList.toggle('dropdown-open');
+			button.setAttribute('aria-expanded', String(open));
+			closeDropdowns(dropdown);
+		});
+
+		dropdown.addEventListener('mouseleave', () => closeDropdowns());
+	}
+
+	document.addEventListener('click', (event) => {
+		const target = event.target as Node;
+		if (!dropdowns.some((dropdown) => dropdown.contains(target))) closeDropdowns();
+		if (hamburger && navMenu && !hamburger.contains(target) && !navMenu.contains(target)) closeMenu();
+	});
+
+	document.addEventListener('keydown', (event) => {
+		if (event.key !== 'Escape') return;
+		const openDropdown = dropdowns.find((dropdown) => dropdown.classList.contains('dropdown-open'));
+		if (openDropdown) {
+			closeDropdowns();
+			openDropdown.querySelector<HTMLButtonElement>('.dropbtn')?.focus();
+			return;
+		}
+		if (navMenu?.classList.contains('show')) {
+			closeMenu();
+			hamburger?.focus();
+		}
+	});
+</script>

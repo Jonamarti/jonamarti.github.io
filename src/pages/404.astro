@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import { ui } from '../i18n/ui';
+
+// GitHub Pages serves a single error page for the whole site, so this one covers both locales.
+---
+
+<Base lang="en" title={ui.en['notFound.title']} description={ui.en['notFound.body']} swapHref="/es/">
+	<div class="present">
+		<h1>{ui.en['notFound.heading']}</h1>
+		<p>{ui.en['notFound.body']}</p>
+		<p lang="es">{ui.es['notFound.body']}</p>
+	</div>
+</Base>

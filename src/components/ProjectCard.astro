@@ -1,0 +1,29 @@
+---
+interface Props {
+	title: string;
+	summary: string;
+	image: string;
+	imageAlt: string;
+	narrowImage?: boolean;
+	href?: string;
+	readMore: string;
+}
+
+const { title, summary, image, imageAlt, narrowImage = false, href, readMore } = Astro.props;
+---
+
+<article>
+	<h2>{title}</h2>
+	<img src={image} alt={imageAlt} loading="lazy" class:list={[{ narrow: narrowImage }]} />
+	<p>
+		{summary}
+		{
+			href && (
+				<>
+					<br />
+					<a href={href}>{readMore}</a>
+				</>
+			)
+		}
+	</p>
+</article>

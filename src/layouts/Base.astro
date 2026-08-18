@@ -1,0 +1,77 @@
+---
+import Cube from '../components/Cube.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import { stripLangPrefix, useTranslations, type Lang } from '../i18n/utils';
+import '../styles/global.css';
+
+interface Props {
+	lang: Lang;
+	title: string;
+	description: string;
+	showPerson?: boolean;
+	swapHref?: string;
+}
+
+const { lang, title, description, showPerson = false, swapHref } = Astro.props;
+const t = useTranslations(lang);
+
+const path = Astro.url.pathname.replace(/\/?$/, '/');
+const canonical = new URL(path, Astro.site);
+const bare = stripLangPrefix(path);
+const alternates = [
+	{ hreflang: 'en', href: new URL(bare, Astro.site) },
+	{ hreflang: 'es', href: new URL(`/es${bare}`, Astro.site) },
+	{ hreflang: 'x-default', href: new URL(bare, Astro.site) },
+];
+
+const person = {
+	'@context': 'https://schema.org',
+	'@type': 'Person',
+	name: 'Jon A. Martiarena',
+	jobTitle: 'Full Stack Developer & QA Automation Specialist',
+	url: Astro.site?.href,
+	sameAs: ['https://github.com/Jonamarti', 'https://www.linkedin.com/in/jon-ander-martiarena/'],
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+		{alternates.map((alt) => <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />)}
+
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
+		<meta name="twitter:card" content="summary_large_image" />
+
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+
+		{showPerson && <script is:inline type="application/ld+json" set:html={JSON.stringify(person)} />}
+	</head>
+
+	<body>
+		<a class="skip-link" href="#main-content">{t('skip.link')}</a>
+
+		<div id="wrapper">
+			<Nav lang={lang} swapHref={swapHref} />
+			<Cube />
+
+			<main id="main-content">
+				<slot />
+			</main>
+		</div>
+
+		<Footer lang={lang} />
+	</body>
+</html>

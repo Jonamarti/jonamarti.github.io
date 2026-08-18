@@ -1,0 +1,31 @@
+---
+import Base from './Base.astro';
+import Skills from '../components/Skills.astro';
+import Timeline from '../components/Timeline.astro';
+import { aboutParagraphs } from '../data/about';
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Base lang={lang} title={t('about.title')} description={t('about.description')}>
+	<div class="present">
+		<h1>{t('about.heading')}</h1>
+		{aboutParagraphs[lang].map((paragraph) => <p>{paragraph}</p>)}
+	</div>
+
+	<section class="skills-section">
+		<h2>{t('about.skills')}</h2>
+		<Skills lang={lang} />
+	</section>
+
+	<section class="skills-section">
+		<h2>{t('about.path')}</h2>
+		<Timeline lang={lang} />
+	</section>
+</Base>
