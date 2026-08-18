@@ -1,8 +1,8 @@
 ---
 title: Life Game in React
 summary: My first introduction to React was to remake an old program made in Python.
-description: Life Game — Conway's Game of Life implemented in React, remaking an earlier Python version.
-image: /images/lifegamereact.png
+description: Life Game - Conway's Game of Life implemented in React, remaking an earlier Python version.
+image: ../../../assets/lifegamereact.png
 imageAlt: Life Game in React screenshot
 repo: https://github.com/Jonamarti/LifeGame
 tags: [React, JavaScript, Cellular automata]

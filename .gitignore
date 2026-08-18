@@ -13,3 +13,8 @@ Thumbs.db
 node_modules/
 dist/
 .astro/
+
+# Test output
+playwright-report/
+test-results/
+.lighthouseci/

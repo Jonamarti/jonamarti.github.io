@@ -3,8 +3,9 @@ title: Plant blog
 summary: >-
   Aplicación full stack. Usa MongoDB cloud para la base de datos, NodeJS y Express en el
   backend, y React en el frontend. -WIP-: refactorizando para incluir Next.js y Auth0.
-description: Plant blog — aplicación full stack con MongoDB, Node/Express y React que avisa de las condiciones meteorológicas que tus plantas no van a soportar.
-image: /images/plantblog.gif
+description: Plant blog - aplicación full stack con MongoDB, Node/Express y React que avisa de las condiciones meteorológicas que tus plantas no van a soportar.
+image: ../../../assets/plantblog.webp
+animated: true
 imageAlt: Animación de la aplicación Plant blog
 repo: https://github.com/Jonamarti/PlantBlog
 tags: [React, Node.js, Express, MongoDB]

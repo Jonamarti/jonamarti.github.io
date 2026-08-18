@@ -24,15 +24,11 @@ html {
 	font-size: 100%;
 }
 
-html,
-body {
-	height: 100%;
-	min-height: 100%;
-}
-
 body {
 	margin: 0;
-	height: fit-content;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 	background-color: var(--bg);
 	color: var(--text);
 	font-family: var(--font-body);
@@ -47,6 +43,7 @@ header {
 
 #wrapper {
 	width: 100%;
+	flex: 1 0 auto;
 }
 
 img {
@@ -217,7 +214,8 @@ nav ul {
 	margin: 0 2%;
 	list-style-type: none;
 	padding: 0;
-	overflow: hidden;
+	/* flow-root contains the floated items without clipping the dropdown */
+	display: flow-root;
 }
 
 nav li {
@@ -280,7 +278,7 @@ li.dropdown {
 }
 
 .dropdown-content a.current-page {
-	background: rgb(135, 138, 138);
+	background: rgb(84, 87, 87);
 	color: white;
 }
 
@@ -409,6 +407,169 @@ article.longform>* {
 	width: 100%;
 }
 
+article.longform ul {
+	text-align: left;
+	margin-top: 1%;
+}
+
+article.longform .lead {
+	font-size: 1.08em;
+	line-height: 1.6;
+}
+
+article.longform .keyfacts {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6em 1.4em;
+	margin: 1.2em 0;
+	padding: 0.9em 1.1em;
+	border: 1px solid #8884;
+	border-radius: 6px;
+	background: #8881;
+	list-style: none;
+}
+
+article.longform .keyfacts li {
+	margin: 0;
+	font-size: 0.92em;
+}
+
+article.longform .keyfacts strong {
+	display: block;
+	font-size: 1.25em;
+	line-height: 1.2;
+}
+
+/* Collapsible detail sections */
+
+article.longform details {
+	border: 1px solid #8884;
+	border-radius: 6px;
+	margin: 0.7em 0;
+	padding: 0 1.1em;
+}
+
+article.longform details[open] {
+	padding-bottom: 0.8em;
+}
+
+article.longform summary {
+	cursor: pointer;
+	padding: 0.75em 0;
+	font-weight: 600;
+}
+
+article.longform summary:hover {
+	text-decoration: underline;
+}
+
+article.longform summary .hint {
+	display: block;
+	font-weight: 400;
+	font-size: 0.86em;
+	opacity: 0.72;
+	margin-top: 0.15em;
+}
+
+article.longform details>*:not(summary) {
+	max-width: 100%;
+}
+
+article.longform details h3 {
+	margin-top: 1.3em;
+}
+
+/* Tables */
+
+article.longform .scroll {
+	overflow-x: auto;
+	margin: 1em 0;
+}
+
+article.longform table {
+	border-collapse: collapse;
+	font-size: 0.9em;
+	width: auto;
+	min-width: 60%;
+}
+
+article.longform th,
+article.longform td {
+	border: 1px solid #8884;
+	padding: 0.35em 0.7em;
+	text-align: center;
+}
+
+article.longform th {
+	background: #8882;
+	font-weight: 600;
+}
+
+article.longform td.lbl,
+article.longform th.lbl {
+	text-align: left;
+	white-space: nowrap;
+}
+
+/* Karnaugh maps */
+
+article.longform .kmaps {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.4em;
+	margin: 1em 0;
+}
+
+article.longform .kmap {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 0.85em;
+	margin: 0;
+}
+
+article.longform .kmap figcaption {
+	font-weight: 600;
+	margin-bottom: 0.4em;
+	text-align: center;
+}
+
+article.longform .kmap table {
+	min-width: 0;
+}
+
+article.longform .kmap td,
+article.longform .kmap th {
+	padding: 0.28em 0.55em;
+	min-width: 1.9em;
+}
+
+article.longform .kmap .one {
+	background: #8883;
+	font-weight: 700;
+}
+
+article.longform .kmap .dc {
+	opacity: 0.5;
+}
+
+article.longform .kmap .axis {
+	background: none;
+	border: none;
+	font-size: 0.9em;
+	opacity: 0.75;
+	font-weight: 400;
+}
+
+article.longform pre {
+	border: 1px solid #8884;
+	background: #8881;
+	padding: 0.8em 1em;
+}
+
+article.longform .flow {
+	font-size: 0.88em;
+	line-height: 1.5;
+}
+
 /* Skills matrix */
 
 .skills-section {
@@ -533,7 +694,7 @@ article .tag {
 /* Footer */
 
 footer {
-	height: fit-content;
+	flex: 0 0 auto;
 	position: relative;
 	z-index: 1;
 	text-align: left;

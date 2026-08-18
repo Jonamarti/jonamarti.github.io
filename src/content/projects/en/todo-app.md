@@ -1,8 +1,9 @@
 ---
 title: To Do App
 summary: Simple to do app in vanilla JS.
-description: To Do App — vanilla JavaScript task list with JSON export and local storage persistence, no backend.
-image: /images/todo.gif
+description: To Do App - vanilla JavaScript task list with JSON export and local storage persistence, no backend.
+image: ../../../assets/todo.webp
+animated: true
 imageAlt: To Do App demo animation
 repo: https://github.com/Jonamarti/TodoAppPureJS
 tags: [JavaScript, Local storage, CSS]

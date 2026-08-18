@@ -1,8 +1,9 @@
 ---
 title: Lista de tareas
 summary: Lista de tareas sencilla en JavaScript sin frameworks.
-description: Lista de tareas — aplicación en JavaScript sin frameworks, con exportación a JSON y persistencia en local storage, sin backend.
-image: /images/todo.gif
+description: Lista de tareas - aplicación en JavaScript sin frameworks, con exportación a JSON y persistencia en local storage, sin backend.
+image: ../../../assets/todo.webp
+animated: true
 imageAlt: Animación de la aplicación de lista de tareas
 repo: https://github.com/Jonamarti/TodoAppPureJS
 tags: [JavaScript, Local storage, CSS]

@@ -1,8 +1,8 @@
 ---
 title: Matrix Calculator
 summary: Perform matrix operations.
-description: Matrix Calculator — addition, multiplication, determinant, rotation and transposition in the browser, extracted from a big matrix multiplication project.
-image: /images/matrixCalc.png
+description: Matrix Calculator - addition, multiplication, determinant, rotation and transposition in the browser, extracted from a big matrix multiplication project.
+image: ../../../assets/matrixCalc.png
 imageAlt: Matrix Calculator screenshot
 repo: https://github.com/Jonamarti/MatrixCalc
 demo: https://jonamarti.github.io/MatrixCalc/script/index.html

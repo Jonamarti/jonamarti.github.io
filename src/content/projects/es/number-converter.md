@@ -4,8 +4,8 @@ summary: >-
   El primer applet que hice. Convierte entre formatos numéricos. Fue una buena forma de
   aprender sobre event listeners y manipulación del DOM. En 2025 le monté un pipeline de CI
   con tests y cobertura en Cypress.
-description: Conversor de números — conversión entre base 2, 10 y 16 en JavaScript sin frameworks, con un pipeline de CI con Cypress sobre Docker y Nginx.
-image: /images/numconv.png
+description: Conversor de números - conversión entre base 2, 10 y 16 en JavaScript sin frameworks, con un pipeline de CI con Cypress sobre Docker y Nginx.
+image: ../../../assets/numconv.png
 imageAlt: Captura del conversor de números
 repo: https://github.com/Jonamarti/NumConverter
 demo: https://jonamarti.github.io/NumberConverter/script/index.html

@@ -20,24 +20,24 @@ export const ui = {
 		'skip.link': 'Skip to content',
 		'goUp.label': 'Back to top',
 
-		'home.title': 'Jon A. Martiarena — Full Stack Developer & QA Automation',
+		'home.title': 'Jon A. Martiarena - Full Stack Developer & QA Automation',
 		'home.description':
-			'Jon A. Martiarena — full stack developer and QA automation specialist. Projects in React, TypeScript, Cypress, VHDL and vanilla JavaScript.',
+			'Jon A. Martiarena - full stack developer and QA automation specialist. Projects in React, TypeScript, Cypress, VHDL and vanilla JavaScript.',
 		'home.greeting': "Hi, I'm Jon A. Martiarena",
 		'home.role': 'Full stack developer and QA automation specialist',
 		'home.intro':
 			'Coming from electronics and low level programming, I work on web development, test automation and CI/CD.',
 
-		'projects.title': 'Projects — Jon A. Martiarena',
+		'projects.title': 'Projects - Jon A. Martiarena',
 		'projects.description':
-			'Projects by Jon A. Martiarena — full stack, React, vanilla JavaScript, Python and gate level VHDL. Live demos and source code.',
+			'Projects by Jon A. Martiarena - full stack, React, vanilla JavaScript, Python and gate level VHDL. Live demos and source code.',
 		'projects.heading': 'List of projects',
 		'projects.intro': 'You can find some of my projects below',
 		'projects.readMore': 'Read more...',
 
-		'about.title': 'About — Jon A. Martiarena',
+		'about.title': 'About - Jon A. Martiarena',
 		'about.description':
-			'About Jon A. Martiarena — full stack developer, QA automation specialist and martial arts instructor, with a background in electronics and self taught web development.',
+			'About Jon A. Martiarena - full stack developer, QA automation specialist and martial arts instructor, with a background in electronics and self taught web development.',
 		'about.heading': 'About me',
 		'about.skills': "Technologies I've worked with",
 		'about.path': 'My Path',
@@ -48,7 +48,7 @@ export const ui = {
 		'footer.projectLink': 'Link to project page:',
 		'footer.appLink': 'Link to the app:',
 
-		'notFound.title': 'Page not found — Jon A. Martiarena',
+		'notFound.title': 'Page not found - Jon A. Martiarena',
 		'notFound.heading': 'Page not found',
 		'notFound.body': 'That page does not exist. Try the navigation bar above.',
 	},
@@ -64,22 +64,22 @@ export const ui = {
 		'skip.link': 'Saltar al contenido',
 		'goUp.label': 'Volver arriba',
 
-		'home.title': 'Jon A. Martiarena — Desarrollo full stack y automatización de QA',
+		'home.title': 'Jon A. Martiarena - Desarrollo full stack y automatización de QA',
 		'home.description':
-			'Jon A. Martiarena — desarrollador full stack y especialista en automatización de QA. Proyectos en React, TypeScript, Cypress, VHDL y JavaScript sin frameworks.',
+			'Jon A. Martiarena - desarrollador full stack y especialista en automatización de QA. Proyectos en React, TypeScript, Cypress, VHDL y JavaScript sin frameworks.',
 		'home.greeting': 'Hola, soy Jon A. Martiarena',
 		'home.role': 'Desarrollador full stack y especialista en automatización de QA',
 		'home.intro':
 			'Vengo de la electrónica y la programación de bajo nivel. Trabajo en desarrollo web, automatización de tests y CI/CD.',
 
-		'projects.title': 'Proyectos — Jon A. Martiarena',
+		'projects.title': 'Proyectos - Jon A. Martiarena',
 		'projects.description':
 			'Proyectos de Jon A. Martiarena: full stack, React, JavaScript sin frameworks, Python y VHDL a nivel de puerta. Demos y código fuente.',
 		'projects.heading': 'Lista de proyectos',
 		'projects.intro': 'Abajo puedes ver algunos de mis proyectos',
 		'projects.readMore': 'Leer más...',
 
-		'about.title': 'Sobre mí — Jon A. Martiarena',
+		'about.title': 'Sobre mí - Jon A. Martiarena',
 		'about.description':
 			'Sobre Jon A. Martiarena: desarrollador full stack, especialista en automatización de QA e instructor de artes marciales, con formación en electrónica y desarrollo web autodidacta.',
 		'about.heading': 'Sobre mí',
@@ -92,7 +92,7 @@ export const ui = {
 		'footer.projectLink': 'Repositorio del proyecto:',
 		'footer.appLink': 'Enlace a la aplicación:',
 
-		'notFound.title': 'Página no encontrada — Jon A. Martiarena',
+		'notFound.title': 'Página no encontrada - Jon A. Martiarena',
 		'notFound.heading': 'Página no encontrada',
 		'notFound.body': 'Esa página no existe. Prueba con la barra de navegación.',
 	},

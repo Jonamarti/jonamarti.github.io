@@ -4,8 +4,8 @@ summary: >-
   The first applet I made. Change from one number format to another. This was a fun way to
   learn about JavaScript event listeners and DOM manipulation. 2025 update: set up a CI
   pipeline, added tests and coverage with Cypress.
-description: Number Converter — base 2, 10 and 16 conversion in vanilla JavaScript, with a Cypress CI pipeline running on Docker and Nginx.
-image: /images/numconv.png
+description: Number Converter - base 2, 10 and 16 conversion in vanilla JavaScript, with a Cypress CI pipeline running on Docker and Nginx.
+image: ../../../assets/numconv.png
 imageAlt: Number Converter screenshot
 repo: https://github.com/Jonamarti/NumConverter
 demo: https://jonamarti.github.io/NumberConverter/script/index.html

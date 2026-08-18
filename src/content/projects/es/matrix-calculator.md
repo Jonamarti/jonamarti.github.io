@@ -1,8 +1,8 @@
 ---
 title: Calculadora de matrices
 summary: Operaciones con matrices.
-description: Calculadora de matrices — suma, multiplicación, determinante, rotación y transposición en el navegador, extraída de un proyecto mayor de multiplicación de matrices grandes.
-image: /images/matrixCalc.png
+description: Calculadora de matrices - suma, multiplicación, determinante, rotación y transposición en el navegador, extraída de un proyecto mayor de multiplicación de matrices grandes.
+image: ../../../assets/matrixCalc.png
 imageAlt: Captura de la calculadora de matrices
 repo: https://github.com/Jonamarti/MatrixCalc
 demo: https://jonamarti.github.io/MatrixCalc/script/index.html

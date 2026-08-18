@@ -43,8 +43,8 @@ export const timeline: TimelineEntry[] = [
 		date: { en: 'In parallel', es: 'En paralelo' },
 		title: { en: 'Martial arts', es: 'Artes marciales' },
 		body: {
-			en: 'Judo, Sambo, MMA and grappling. I`ve been training all my life and teaching MMA, Sambo and Grappling since 2018	',
-			es: 'Judo, Sambo, MMA y grappling, entrenando toda la vida y dando clases de MMA, Sambo y Grappling desde 2018',
+			en: "Judo, Sambo, MMA and grappling. I've been training all my life and teaching MMA, Sambo and Grappling since 2018.",
+			es: 'Judo, Sambo, MMA y grappling. Llevo entrenando toda la vida y dando clases de MMA, Sambo y Grappling desde 2018.',
 		},
 	},
 	{

@@ -27,6 +27,7 @@ entries.sort((a, b) => a.data.order - b.data.order);
 					summary={entry.data.summary}
 					image={entry.data.image}
 					imageAlt={entry.data.imageAlt}
+					animated={entry.data.animated}
 					narrowImage={entry.data.narrowImage}
 					href={entry.data.detail ? localizePath(`/projects/${entry.id.slice(lang.length + 1)}/`, lang) : undefined}
 					readMore={t('projects.readMore')}

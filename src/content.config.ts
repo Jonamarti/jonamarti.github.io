@@ -4,12 +4,14 @@ import { glob } from 'astro/loaders';
 
 const projects = defineCollection({
 	loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
-	schema: z.object({
+	schema: ({ image }) => z.object({
 		title: z.string(),
 		summary: z.string(),
 		description: z.string(),
-		image: z.string(),
+		image: image(),
 		imageAlt: z.string(),
+		/** Animated sources are emitted untouched; resizing them would flatten them to one frame. */
+		animated: z.boolean().default(false),
 		repo: z.string().url().optional(),
 		demo: z.string().url().optional(),
 		demoLabel: z.string().optional(),
