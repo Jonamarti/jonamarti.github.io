@@ -1,7 +1,7 @@
 ---
 title: What runs before this site deploys
 summary: The checks every push has to pass, and the two bugs they were written in response to.
-description: The continuous integration pipeline behind jonamarti.github.io: type checking, a case sensitive link checker, Playwright, axe and Lighthouse budgets.
+description: The continuous integration pipeline behind jonamarti.github.io- type checking, a case sensitive link checker, Playwright, axe and Lighthouse budgets.
 area: qa
 date: 2026-08-18
 tags: [GitHub Actions, Playwright, axe, Lighthouse, CI]
