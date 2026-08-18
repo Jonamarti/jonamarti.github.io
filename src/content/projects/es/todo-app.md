@@ -7,6 +7,7 @@ animated: true
 imageAlt: Animación de la aplicación de lista de tareas
 repo: https://github.com/Jonamarti/TodoAppPureJS
 tags: [JavaScript, Local storage, CSS]
+areas: [web, tinkering]
 order: 6
 ---
 

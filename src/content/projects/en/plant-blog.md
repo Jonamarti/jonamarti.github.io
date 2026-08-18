@@ -10,6 +10,7 @@ animated: true
 imageAlt: Plant blog demo animation
 repo: https://github.com/Jonamarti/PlantBlog
 tags: [React, Node.js, Express, MongoDB]
+areas: [web, tinkering]
 order: 1
 ---
 

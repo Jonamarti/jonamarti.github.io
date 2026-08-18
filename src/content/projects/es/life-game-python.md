@@ -8,6 +8,7 @@ description: Life Game en Python - el juego de la vida de Conway con Tkinter, co
 image: ../../../assets/lifegamepy.png
 imageAlt: Captura de Life Game en Python
 tags: [Python, Tkinter]
+areas: [tinkering]
 order: 5
 detail: false
 ---

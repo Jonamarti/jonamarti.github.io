@@ -12,6 +12,8 @@ export const ui = {
 		'nav.home': 'Home',
 		'nav.projects': 'Projects',
 		'nav.about': 'About',
+		'nav.areas': 'Areas',
+		'nav.seeAllAreas': 'See all areas',
 		'nav.seeAll': 'See all projects',
 		'nav.label': 'Main navigation',
 		'nav.toggle': 'Toggle navigation menu',
@@ -35,6 +37,23 @@ export const ui = {
 		'projects.intro': 'You can find some of my projects below',
 		'projects.readMore': 'Read more...',
 
+		'areas.title': 'Areas - Jon A. Martiarena',
+		'areas.description':
+			'The areas Jon A. Martiarena works in: electronics and low level design, QA and automation, tinkering and web development.',
+		'areas.heading': 'Areas',
+		'areas.intro': 'Each area collects the projects and notes that belong to it. A project can sit in more than one.',
+		'areas.projects': 'Projects in this area',
+		'areas.notes': 'Notes',
+		'areas.noNotes': 'No notes written yet.',
+		'areas.projectCount': 'projects',
+		'areas.projectCountOne': 'project',
+		'areas.back': 'All areas',
+		'areas.inThis': 'Areas',
+
+		'filter.label': 'Filter projects by area',
+		'filter.all': 'All',
+		'filter.showing': 'Showing {shown} of {total} projects',
+
 		'about.title': 'About - Jon A. Martiarena',
 		'about.description':
 			'About Jon A. Martiarena - full stack developer, QA automation specialist and martial arts instructor, with a background in electronics and self taught web development.',
@@ -56,6 +75,8 @@ export const ui = {
 		'nav.home': 'Inicio',
 		'nav.projects': 'Proyectos',
 		'nav.about': 'Sobre mí',
+		'nav.areas': 'Áreas',
+		'nav.seeAllAreas': 'Ver todas las áreas',
 		'nav.seeAll': 'Ver todos los proyectos',
 		'nav.label': 'Navegación principal',
 		'nav.toggle': 'Abrir o cerrar el menú de navegación',
@@ -78,6 +99,23 @@ export const ui = {
 		'projects.heading': 'Lista de proyectos',
 		'projects.intro': 'Abajo puedes ver algunos de mis proyectos',
 		'projects.readMore': 'Leer más...',
+
+		'areas.title': 'Áreas - Jon A. Martiarena',
+		'areas.description':
+			'Las áreas en las que trabaja Jon A. Martiarena: electrónica y diseño a bajo nivel, QA y automatización, cacharreo y desarrollo web.',
+		'areas.heading': 'Áreas',
+		'areas.intro': 'Cada área reúne los proyectos y apuntes que le corresponden. Un proyecto puede estar en más de una.',
+		'areas.projects': 'Proyectos de esta área',
+		'areas.notes': 'Apuntes',
+		'areas.noNotes': 'Todavía no hay apuntes escritos.',
+		'areas.projectCount': 'proyectos',
+		'areas.projectCountOne': 'proyecto',
+		'areas.back': 'Todas las áreas',
+		'areas.inThis': 'Áreas',
+
+		'filter.label': 'Filtrar proyectos por área',
+		'filter.all': 'Todos',
+		'filter.showing': 'Mostrando {shown} de {total} proyectos',
 
 		'about.title': 'Sobre mí - Jon A. Martiarena',
 		'about.description':

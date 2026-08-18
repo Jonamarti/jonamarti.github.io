@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import Base from './Base.astro';
+import { areas } from '../data/areas';
+import { localizePath, useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const projects = await getCollection('projects', ({ id }) => id.startsWith(`${lang}/`));
+
+const cards = areas.map((area) => ({
+	...area,
+	href: localizePath(`/areas/${area.id}/`, lang),
+	count: projects.filter((project) => project.data.areas.includes(area.id)).length,
+}));
+---
+
+<Base lang={lang} title={t('areas.title')} description={t('areas.description')}>
+	<header><h1>{t('areas.heading')}</h1></header>
+	<p>{t('areas.intro')}</p>
+
+	<section class="areas">
+		{
+			cards.map((area) => (
+				<a class="area-card" href={area.href}>
+					<h2>{area.name[lang]}</h2>
+					<p>{area.summary[lang]}</p>
+					<span class="area-count">
+						{area.count} {area.count === 1 ? t('areas.projectCountOne') : t('areas.projectCount')}
+					</span>
+				</a>
+			))
+		}
+	</section>
+</Base>

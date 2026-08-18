@@ -8,6 +8,7 @@ image: ../../../assets/maquinaenigma.png
 imageAlt: Enigma machine diagram
 repo: https://github.com/Jonamarti/enigma_digital
 tags: [VHDL, GHDL, Enigma, Digital logic, Karnaugh maps, Automated testing]
+areas: [electronics, qa]
 order: 7
 narrowImage: true
 longform: true

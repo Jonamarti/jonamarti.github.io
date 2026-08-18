@@ -8,6 +8,7 @@ description: Life Game in Python - Conway's Game of Life built with Tkinter as a
 image: ../../../assets/lifegamepy.png
 imageAlt: Life Game in Python screenshot
 tags: [Python, Tkinter]
+areas: [tinkering]
 order: 5
 detail: false
 ---

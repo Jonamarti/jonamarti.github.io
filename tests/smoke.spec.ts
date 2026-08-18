@@ -1,6 +1,9 @@
 import { expect, test } from '@playwright/test';
 import { openNav } from './nav';
 
+const areaIds = ['electronics', 'qa', 'tinkering', 'web'];
+const areaRoutes = areaIds.map((id) => `/areas/${id}/`);
+
 const projectSlugs = ['plant-blog', 'life-game', 'matrix-calculator', 'number-converter', 'todo-app', 'enigma-vhdl'];
 
 const routes = [
@@ -8,10 +11,16 @@ const routes = [
 	'/about/',
 	'/projects/',
 	...projectSlugs.map((slug) => `/projects/${slug}/`),
+	'/areas/',
+	...areaRoutes,
+	'/notes/testing-this-site/',
 	'/es/',
 	'/es/about/',
 	'/es/projects/',
 	...projectSlugs.map((slug) => `/es/projects/${slug}/`),
+	'/es/areas/',
+	...areaRoutes.map((route) => `/es${route}`),
+	'/es/notes/testing-this-site/',
 ];
 
 test.describe('pages', () => {
@@ -64,12 +73,23 @@ test.describe('language switching', () => {
 });
 
 test.describe('navigation', () => {
-	test('dropdown opens on click and lists every project page', async ({ page }) => {
+	test('projects dropdown lists every project page', async ({ page }) => {
 		await page.goto('/');
 		await openNav(page);
-		await page.getByRole('button', { name: 'Projects' }).click();
-		const items = page.locator('.dropdown-content a');
+		const dropdown = page.locator('.dropdown', { has: page.getByRole('button', { name: 'Projects' }) });
+		await dropdown.getByRole('button').click();
+		const items = dropdown.locator('.dropdown-content a');
 		await expect(items).toHaveCount(projectSlugs.length + 1);
+		await expect(items.first()).toBeVisible();
+	});
+
+	test('areas dropdown lists every area', async ({ page }) => {
+		await page.goto('/');
+		await openNav(page);
+		const dropdown = page.locator('.dropdown', { has: page.getByRole('button', { name: 'Areas' }) });
+		await dropdown.getByRole('button').click();
+		const items = dropdown.locator('.dropdown-content a');
+		await expect(items).toHaveCount(areaIds.length + 1);
 		await expect(items.first()).toBeVisible();
 	});
 

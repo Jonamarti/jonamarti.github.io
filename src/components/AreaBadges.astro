@@ -1,0 +1,19 @@
+---
+import { areas, type AreaId } from '../data/areas';
+import { localizePath, useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+	ids: AreaId[];
+}
+
+const { lang, ids } = Astro.props;
+const t = useTranslations(lang);
+
+const badges = areas.filter((area) => ids.includes(area.id));
+---
+
+<p class="area-badges">
+	<span class="area-badges-label">{t('areas.inThis')}:</span>
+	{badges.map((area) => <a href={localizePath(`/areas/${area.id}/`, lang)}>{area.name[lang]}</a>)}
+</p>

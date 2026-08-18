@@ -9,6 +9,7 @@ animated: true
 imageAlt: Animación de la aplicación Plant blog
 repo: https://github.com/Jonamarti/PlantBlog
 tags: [React, Node.js, Express, MongoDB]
+areas: [web, tinkering]
 order: 1
 ---
 

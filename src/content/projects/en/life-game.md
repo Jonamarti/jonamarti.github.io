@@ -6,6 +6,7 @@ image: ../../../assets/lifegamereact.png
 imageAlt: Life Game in React screenshot
 repo: https://github.com/Jonamarti/LifeGame
 tags: [React, JavaScript, Cellular automata]
+areas: [web]
 order: 2
 ---
 

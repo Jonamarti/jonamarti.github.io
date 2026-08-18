@@ -2,7 +2,30 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 import { openNav } from './nav';
 
-const routes = ['/', '/about/', '/projects/', '/projects/enigma-vhdl/', '/es/', '/es/about/', '/es/projects/', '/es/projects/enigma-vhdl/'];
+const routes = [
+	'/',
+	'/about/',
+	'/projects/',
+	'/projects/enigma-vhdl/',
+	'/areas/',
+	'/areas/qa/',
+	'/notes/testing-this-site/',
+	'/es/',
+	'/es/about/',
+	'/es/projects/',
+	'/es/projects/enigma-vhdl/',
+	'/es/areas/',
+	'/es/areas/qa/',
+	'/es/notes/testing-this-site/',
+];
+
+// The background cube animates for 50s, and while a face sits over the text axe cannot work out
+// the effective background, so it downgrades a contrast failure to "incomplete" and the run passes
+// or fails depending on where the cube happens to be. Reduced motion parks it and makes the audit
+// repeatable.
+test.beforeEach(async ({ page }) => {
+	await page.emulateMedia({ reducedMotion: 'reduce' });
+});
 
 for (const route of routes) {
 	test(`${route} has no accessibility violations`, async ({ page }) => {

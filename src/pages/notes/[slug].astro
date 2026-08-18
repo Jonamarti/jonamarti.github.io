@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+import NoteDetail from '../../layouts/NoteDetail.astro';
+
+export async function getStaticPaths() {
+	const entries = await getCollection('notes', ({ id }) => id.startsWith('en/'));
+	return entries.map((entry) => ({
+		params: { slug: entry.id.slice('en/'.length) },
+		props: { entry },
+	}));
+}
+
+const { entry } = Astro.props;
+---
+
+<NoteDetail lang="en" entry={entry} />

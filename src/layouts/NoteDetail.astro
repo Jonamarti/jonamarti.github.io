@@ -1,0 +1,45 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Base from './Base.astro';
+import { findArea } from '../data/areas';
+import { localizePath, useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+	entry: CollectionEntry<'notes'>;
+}
+
+const { lang, entry } = Astro.props;
+const t = useTranslations(lang);
+const { Content } = await render(entry);
+const { title, description, area, date, tags } = entry.data;
+
+const parent = findArea(area)!;
+const formatted = date.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-GB', { year: 'numeric', month: 'long' });
+---
+
+<Base lang={lang} title={`${title} - Jon A. Martiarena`} description={description}>
+	<section>
+		<h1>{title}</h1>
+
+		<article class="longform">
+			<p class="note-meta">
+				<a href={localizePath(`/areas/${area}/`, lang)}>{parent.name[lang]}</a>
+				<span> / </span>
+				<time datetime={date.toISOString().slice(0, 10)}>{formatted}</time>
+			</p>
+
+			<Content />
+
+			{
+				tags.length > 0 && (
+					<div class="tags">
+						{tags.map((tag) => (
+							<span class="tag">{tag}</span>
+						))}
+					</div>
+				)
+			}
+		</article>
+	</section>
+</Base>

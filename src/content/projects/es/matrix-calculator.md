@@ -8,6 +8,7 @@ repo: https://github.com/Jonamarti/MatrixCalc
 demo: https://jonamarti.github.io/MatrixCalc/script/index.html
 demoLabel: Calculadora de matrices
 tags: [JavaScript, Álgebra lineal, Rendimiento]
+areas: [web, tinkering]
 order: 3
 ---
 

@@ -9,15 +9,16 @@ interface Props {
 	imageAlt: string;
 	animated?: boolean;
 	narrowImage?: boolean;
+	projectAreas?: readonly string[];
 	href?: string;
 	readMore: string;
 }
 
-const { title, summary, image, imageAlt, animated = false, narrowImage = false, href, readMore } = Astro.props;
+const { title, summary, image, imageAlt, animated = false, narrowImage = false, projectAreas, href, readMore } = Astro.props;
 const imageClass = narrowImage ? 'narrow' : undefined;
 ---
 
-<article>
+<article data-areas={projectAreas?.join(' ')}>
 	<h2>{title}</h2>
 	{
 		animated ? (

@@ -1,0 +1,80 @@
+---
+import { getCollection } from 'astro:content';
+import Base from './Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { areas } from '../data/areas';
+import type { AreaId } from '../data/areas';
+import { localizePath, useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+	areaId: AreaId;
+}
+
+const { lang, areaId } = Astro.props;
+const t = useTranslations(lang);
+
+const area = areas.find((candidate) => candidate.id === areaId)!;
+
+const projects = (await getCollection('projects', ({ id, data }) => id.startsWith(`${lang}/`) && data.areas.includes(areaId))).sort(
+	(a, b) => a.data.order - b.data.order
+);
+
+const notes = (await getCollection('notes', ({ id, data }) => id.startsWith(`${lang}/`) && data.area === areaId)).sort(
+	(a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<Base lang={lang} title={`${area.name[lang]} - Jon A. Martiarena`} description={area.summary[lang]}>
+	<div class="present">
+		<h1>{area.name[lang]}</h1>
+		{area.intro[lang].map((paragraph) => <p>{paragraph}</p>)}
+	</div>
+
+	{
+		projects.length > 0 && (
+			<section class="skills-section">
+				<h2>{t('areas.projects')}</h2>
+			</section>
+		)
+	}
+
+	<section class="projects">
+		{
+			projects.map((entry) => (
+				<ProjectCard
+					title={entry.data.title}
+					summary={entry.data.summary}
+					image={entry.data.image}
+					imageAlt={entry.data.imageAlt}
+					animated={entry.data.animated}
+					narrowImage={entry.data.narrowImage}
+					href={entry.data.detail ? localizePath(`/projects/${entry.id.slice(lang.length + 1)}/`, lang) : undefined}
+					readMore={t('projects.readMore')}
+				/>
+			))
+		}
+	</section>
+
+	<section class="skills-section">
+		<h2>{t('areas.notes')}</h2>
+		{
+			notes.length > 0 ? (
+				<ul class="note-list">
+					{notes.map((note) => (
+						<li>
+							<a href={localizePath(`/notes/${note.id.slice(lang.length + 1)}/`, lang)}>{note.data.title}</a>
+							<p>{note.data.summary}</p>
+						</li>
+					))}
+				</ul>
+			) : (
+				<p>{t('areas.noNotes')}</p>
+			)
+		}
+	</section>
+
+	<div class="present">
+		<p><a href={localizePath('/areas/', lang)}>{t('areas.back')}</a></p>
+	</div>
+</Base>

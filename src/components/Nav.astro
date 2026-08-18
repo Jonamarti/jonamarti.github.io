@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { areas } from '../data/areas';
 import { localizePath, otherLang, stripLangPrefix, useTranslations, type Lang } from '../i18n/utils';
 
 interface Props {
@@ -26,7 +27,14 @@ const projectLinks = entries.map((entry) => ({
 	href: localizePath(`/projects/${entry.id.slice(lang.length + 1)}/`, lang),
 }));
 
+const areasIndex = localizePath('/areas/', lang);
+const areaLinks = areas.map((area) => ({
+	title: area.name[lang],
+	href: localizePath(`/areas/${area.id}/`, lang),
+}));
+
 const inProjects = here.startsWith(projectsIndex);
+const inAreas = here.startsWith(areasIndex) || here.startsWith(localizePath('/notes/', lang));
 const swapUrl = swapHref ?? localizePath(stripLangPrefix(here), otherLang(lang));
 ---
 
@@ -53,6 +61,24 @@ const swapUrl = swapHref ?? localizePath(stripLangPrefix(here), otherLang(lang))
 				}
 				<a href={projectsIndex} class:list={['see-all', { 'current-page': isCurrent(projectsIndex) }]}>
 					{t('nav.seeAll')}
+				</a>
+			</div>
+		</li>
+
+		<li class="dropdown">
+			<button type="button" class:list={['dropbtn', { activePage: inAreas }]} aria-haspopup="true" aria-expanded="false">
+				{t('nav.areas')}
+			</button>
+			<div class="dropdown-content">
+				{
+					areaLinks.map((area) => (
+						<a href={area.href} class={isCurrent(area.href) ? 'current-page' : undefined}>
+							{area.title}
+						</a>
+					))
+				}
+				<a href={areasIndex} class:list={['see-all', { 'current-page': isCurrent(areasIndex) }]}>
+					{t('nav.seeAllAreas')}
 				</a>
 			</div>
 		</li>

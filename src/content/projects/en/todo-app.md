@@ -7,6 +7,7 @@ animated: true
 imageAlt: To Do App demo animation
 repo: https://github.com/Jonamarti/TodoAppPureJS
 tags: [JavaScript, Local storage, CSS]
+areas: [web, tinkering]
 order: 6
 ---
 

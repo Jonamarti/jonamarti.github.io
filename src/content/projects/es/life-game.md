@@ -6,6 +6,7 @@ image: ../../../assets/lifegamereact.png
 imageAlt: Captura de Life Game en React
 repo: https://github.com/Jonamarti/LifeGame
 tags: [React, JavaScript, Autómatas celulares]
+areas: [web]
 order: 2
 ---
 

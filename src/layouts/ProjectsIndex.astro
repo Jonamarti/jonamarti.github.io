@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from './Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import { areas } from '../data/areas';
 import { localizePath, useTranslations, type Lang } from '../i18n/utils';
 
 interface Props {
@@ -13,11 +14,32 @@ const t = useTranslations(lang);
 
 const entries = await getCollection('projects', ({ id }) => id.startsWith(`${lang}/`));
 entries.sort((a, b) => a.data.order - b.data.order);
+
+const projectsIndex = localizePath('/projects/', lang);
+
+// Real links to the area pages, so the control still works with scripting off. The script
+// upgrades them into an in place filter.
+const filters = [
+	{ id: '', label: t('filter.all'), href: projectsIndex },
+	...areas.map((area) => ({ id: area.id, label: area.name[lang], href: localizePath(`/areas/${area.id}/`, lang) })),
+];
 ---
 
 <Base lang={lang} title={t('projects.title')} description={t('projects.description')}>
 	<header><h1>{t('projects.heading')}</h1></header>
 	<p>{t('projects.intro')}</p>
+
+	<nav class="filters" aria-label={t('filter.label')} data-filters data-template={t('filter.showing')}>
+		{
+			filters.map((filter) => (
+				<a href={filter.href} data-filter={filter.id} aria-current={filter.id === '' ? 'true' : undefined}>
+					{filter.label}
+				</a>
+			))
+		}
+	</nav>
+
+	<p class="filter-status" data-filter-status role="status" aria-live="polite"></p>
 
 	<section class="projects">
 		{
@@ -29,6 +51,7 @@ entries.sort((a, b) => a.data.order - b.data.order);
 					imageAlt={entry.data.imageAlt}
 					animated={entry.data.animated}
 					narrowImage={entry.data.narrowImage}
+					projectAreas={entry.data.areas}
 					href={entry.data.detail ? localizePath(`/projects/${entry.id.slice(lang.length + 1)}/`, lang) : undefined}
 					readMore={t('projects.readMore')}
 				/>
@@ -40,3 +63,57 @@ entries.sort((a, b) => a.data.order - b.data.order);
 		<a href="#main-content" aria-label={t('goUp.label')}>&#8593;</a>
 	</div>
 </Base>
+
+<script>
+	const bar = document.querySelector<HTMLElement>('[data-filters]');
+	const status = document.querySelector<HTMLElement>('[data-filter-status]');
+	const cards = Array.from(document.querySelectorAll<HTMLElement>('.projects article'));
+
+	if (bar && cards.length > 0) {
+		const links = Array.from(bar.querySelectorAll<HTMLAnchorElement>('[data-filter]'));
+		const template = bar.dataset.template ?? '';
+
+		function apply(area: string, updateHistory: boolean) {
+			let shown = 0;
+			for (const card of cards) {
+				const list = (card.dataset.areas ?? '').split(' ');
+				const match = area === '' || list.includes(area);
+				card.hidden = !match;
+				if (match) shown++;
+			}
+
+			for (const link of links) {
+				if (link.dataset.filter === area) {
+					link.setAttribute('aria-current', 'true');
+				} else {
+					link.removeAttribute('aria-current');
+				}
+			}
+
+			if (status) {
+				status.textContent = template.replace('{shown}', String(shown)).replace('{total}', String(cards.length));
+			}
+
+			if (updateHistory) {
+				const url = new URL(window.location.href);
+				if (area) {
+					url.searchParams.set('area', area);
+				} else {
+					url.searchParams.delete('area');
+				}
+				history.replaceState(null, '', url);
+			}
+		}
+
+		for (const link of links) {
+			link.addEventListener('click', (event) => {
+				event.preventDefault();
+				apply(link.dataset.filter ?? '', true);
+			});
+		}
+
+		const requested = new URL(window.location.href).searchParams.get('area') ?? '';
+		const known = links.some((link) => link.dataset.filter === requested);
+		apply(known ? requested : '', false);
+	}
+</script>

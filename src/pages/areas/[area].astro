@@ -1,0 +1,12 @@
+---
+import AreaDetail from '../../layouts/AreaDetail.astro';
+import { areas } from '../../data/areas';
+
+export function getStaticPaths() {
+	return areas.map((area) => ({ params: { area: area.id } }));
+}
+
+const { area } = Astro.params;
+---
+
+<AreaDetail lang="en" areaId={area as never} />

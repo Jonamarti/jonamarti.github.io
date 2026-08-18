@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { render, type CollectionEntry } from 'astro:content';
+import AreaBadges from '../components/AreaBadges.astro';
 import Base from './Base.astro';
 import { useTranslations, type Lang } from '../i18n/utils';
 
@@ -12,7 +13,7 @@ interface Props {
 const { lang, entry } = Astro.props;
 const t = useTranslations(lang);
 const { Content } = await render(entry);
-const { title, description, image, imageAlt, animated, tags, repo, demo, demoLabel, longform } = entry.data;
+const { title, description, image, imageAlt, animated, tags, repo, demo, demoLabel, longform, areas } = entry.data;
 ---
 
 <Base lang={lang} title={`${title} - Jon A. Martiarena`} description={description}>
@@ -29,6 +30,8 @@ const { title, description, image, imageAlt, animated, tags, repo, demo, demoLab
 			}
 
 			<Content />
+
+			<AreaBadges lang={lang} ids={areas} />
 
 			{
 				tags.length > 0 && (

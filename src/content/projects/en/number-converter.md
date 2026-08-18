@@ -11,6 +11,7 @@ repo: https://github.com/Jonamarti/NumConverter
 demo: https://jonamarti.github.io/NumberConverter/script/index.html
 demoLabel: Number Converter
 tags: [JavaScript, Cypress, Docker, Nginx, CI]
+areas: [qa, web]
 order: 4
 ---
 
