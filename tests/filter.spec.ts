@@ -65,7 +65,7 @@ test.describe('project filter', () => {
 	test('the spanish filter works on the spanish routes', async ({ page }) => {
 		await page.goto('/es/projects/');
 		await page.getByRole('link', { name: 'Cacharreo', exact: true }).click();
-		await expect(visibleCards(page)).toHaveCount(4);
-		await expect(page.locator('[data-filter-status]')).toHaveText('Mostrando 4 de 8 proyectos');
+		await expect(visibleCards(page)).toHaveCount(5);
+		await expect(page.locator('[data-filter-status]')).toHaveText('Mostrando 5 de 8 proyectos');
 	});
 });
