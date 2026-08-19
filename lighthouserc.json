@@ -2,7 +2,7 @@
 	"ci": {
 		"collect": {
 			"settings": {
-				"chromeFlags": ["--no-sandbox", "--disable-setuid-sandbox"]
+				"chromeFlags": "--no-sandbox --disable-setuid-sandbox"
 			},
 			"staticDistDir": "./dist",
 			"url": [
