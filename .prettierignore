@@ -1,0 +1,13 @@
+dist/
+node_modules/
+.astro/
+.lighthouseci/
+playwright-report/
+test-results/
+package-lock.json
+src/content/
+public/
+AGENTE-INSTRUCCIONES.md
+blog-plan.md
+deuda-tecnica.md
+plan.md

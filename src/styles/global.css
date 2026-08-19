@@ -91,7 +91,7 @@ img {
 	animation: cubeRotation 50s ease-in-out infinite;
 }
 
-#D3Cube>div {
+#D3Cube > div {
 	position: absolute;
 	width: var(--cube-depth);
 	height: var(--cube-depth);
@@ -257,7 +257,7 @@ li.dropdown {
 	position: absolute;
 	background-color: #f9f9f9;
 	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 	z-index: 1;
 }
 
@@ -405,7 +405,7 @@ article.longform {
 	text-align: left;
 }
 
-article.longform>* {
+article.longform > * {
 	width: 100%;
 }
 
@@ -473,7 +473,7 @@ article.longform summary .hint {
 	margin-top: 0.15em;
 }
 
-article.longform details>*:not(summary) {
+article.longform details > *:not(summary) {
 	max-width: 100%;
 }
 
@@ -817,9 +817,8 @@ footer img {
 }
 
 @media (prefers-reduced-motion: reduce) {
-
 	#D3Cube,
-	#D3Cube>div {
+	#D3Cube > div {
 		animation: none;
 	}
 
@@ -1007,15 +1006,15 @@ main a:focus-visible {
 	min-height: 1.4em;
 }
 
-.timer[data-phase-name="work"] .timer-clock {
+.timer[data-phase-name='work'] .timer-clock {
 	color: #1c6b3a;
 }
 
-.timer[data-phase-name="rest"] .timer-clock {
+.timer[data-phase-name='rest'] .timer-clock {
 	color: #8a4b00;
 }
 
-.timer[data-phase-name="prepare"] .timer-clock {
+.timer[data-phase-name='prepare'] .timer-clock {
 	color: #7a1f1f;
 }
 
@@ -1067,7 +1066,7 @@ main a:focus-visible {
 	font-size: 0.9em;
 }
 
-.timer-settings input[type="number"] {
+.timer-settings input[type='number'] {
 	font-family: inherit;
 	font-size: 1rem;
 	padding: 6px 8px;

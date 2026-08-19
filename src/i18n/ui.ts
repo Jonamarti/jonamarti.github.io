@@ -27,8 +27,7 @@ export const ui = {
 			'Jon A. Martiarena - full stack developer and QA automation specialist. Projects in React, TypeScript, Cypress, VHDL and vanilla JavaScript.',
 		'home.greeting': "Hi, I'm Jon A. Martiarena",
 		'home.role': 'Full stack developer and QA automation specialist',
-		'home.intro':
-			'Coming from electronics and low level programming, I work on web development, test automation and CI/CD.',
+		'home.intro': 'Coming from electronics and low level programming, I work on web development, test automation and CI/CD.',
 
 		'projects.title': 'Projects - Jon A. Martiarena',
 		'projects.description':
@@ -108,8 +107,7 @@ export const ui = {
 			'Jon A. Martiarena - desarrollador full stack y especialista en automatización de QA. Proyectos en React, TypeScript, Cypress, VHDL y JavaScript sin frameworks.',
 		'home.greeting': 'Hola, soy Jon A. Martiarena',
 		'home.role': 'Desarrollador full stack y especialista en automatización de QA',
-		'home.intro':
-			'Vengo de la electrónica y la programación de bajo nivel. Trabajo en desarrollo web, automatización de tests y CI/CD.',
+		'home.intro': 'Vengo de la electrónica y la programación de bajo nivel. Trabajo en desarrollo web, automatización de tests y CI/CD.',
 
 		'projects.title': 'Proyectos - Jon A. Martiarena',
 		'projects.description':
