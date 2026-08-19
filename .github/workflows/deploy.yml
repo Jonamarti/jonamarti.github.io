@@ -45,11 +45,12 @@ jobs:
           retention-days: 7
 
       - name: Lighthouse
-        run: |
-          CHROME_PATH=$(node -e "console.log(require('@playwright/test').chromium.executablePath())")
-          npm run lighthouse
         env:
           CHROME_PATH: ${{ env.CHROME_PATH }}
+        run: |
+          CHROME_PATH=$(node -e "console.log(require('@playwright/test').chromium.executablePath())")
+          export CHROME_PATH
+          npm run lighthouse
 
       - uses: actions/upload-artifact@v4
         if: always()

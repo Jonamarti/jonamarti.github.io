@@ -1,7 +1,6 @@
 {
 	"ci": {
 		"collect": {
-			"chromePath": "/path/to/chromium",
 			"settings": {
 				"chromeFlags": ["--no-sandbox", "--disable-setuid-sandbox"]
 			},
