@@ -626,6 +626,17 @@ article .tag {
 	color: var(--card-text);
 }
 
+article.longform .toc {
+	border: 1px solid #8884;
+	border-radius: 6px;
+	padding: 0.6em 1.2em;
+	margin: 1.2em 0;
+}
+
+article.longform .toc ul {
+	margin: 0.3em 0 0;
+}
+
 /* Timeline */
 
 .timeline {

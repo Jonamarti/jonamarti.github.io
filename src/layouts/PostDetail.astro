@@ -1,0 +1,70 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Base from './Base.astro';
+import { findArea } from '../data/areas';
+import { localizePath, useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+	entry: CollectionEntry<'posts'>;
+}
+
+const { lang, entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const { title, description, area, date, tags, longform } = entry.data;
+const t = useTranslations(lang);
+
+const parent = area ? findArea(area) : undefined;
+const formatted = date.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+const toc = headings.filter((heading) => heading.depth === 2);
+---
+
+<Base lang={lang} title={`${title} - Jon A. Martiarena`} description={description}>
+	<section>
+		<h1>{title}</h1>
+
+		<article class:list={[{ longform }]}>
+			<p class="note-meta">
+				{
+					parent && (
+						<>
+							<a href={localizePath(`/areas/${area}/`, lang)}>{parent.name[lang]}</a>
+							<span> / </span>
+						</>
+					)
+				}
+				<time datetime={date.toISOString().slice(0, 10)}>{formatted}</time>
+			</p>
+
+			{
+				longform && toc.length > 1 && (
+					<nav class="toc" aria-label={t('blog.toc')}>
+						<ul>
+							{toc.map((heading) => (
+								<li>
+									<a href={`#${heading.slug}`}>{heading.text}</a>
+								</li>
+							))}
+						</ul>
+					</nav>
+				)
+			}
+
+			<Content />
+
+			{
+				tags.length > 0 && (
+					<div class="tags">
+						{tags.map((tag) => (
+							<span class="tag">{tag}</span>
+						))}
+					</div>
+				)
+			}
+		</article>
+
+		<div class="present">
+			<p><a href={localizePath('/blog/', lang)}>{t('blog.back')}</a></p>
+		</div>
+	</section>
+</Base>

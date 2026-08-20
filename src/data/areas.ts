@@ -96,14 +96,8 @@ export const areas: Area[] = [
 			es: 'Judo, Sambo, MMA y grappling, entrenando y enseñando.',
 		},
 		intro: {
-			en: [
-				'I have been training all my life and teaching MMA, Sambo and grappling since 2018.',
-				'Teaching is what changed how I work. Breaking a technique down for someone who cannot do it yet forces you to find the one detail that is actually failing, which is the same move as isolating a bug: stop looking at the whole thing, change one variable, watch what happens.',
-			],
-			es: [
-				'Llevo entrenando toda la vida y doy clases de MMA, Sambo y grappling desde 2018.',
-				'Enseñar es lo que me cambió la forma de trabajar. Descomponer una técnica para alguien que todavía no la saca te obliga a encontrar el detalle concreto que está fallando, que es el mismo movimiento que aislar un fallo en el código: dejar de mirar el conjunto, cambiar una variable y ver qué pasa.',
-			],
+			en: ['I have been training different martial arts since I can remember. I have been teaching MMA, Sambo and grappling since 2018.'],
+			es: ['Desde que tengo memoria he estado entrenando diferentes disciplinas. Doy clases de MMA, Sambo y grappling desde 2018.'],
 		},
 	},
 ];

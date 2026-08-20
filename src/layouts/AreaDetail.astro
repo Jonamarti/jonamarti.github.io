@@ -24,6 +24,12 @@ const notes = (await getCollection('notes', ({ id, data }) => id.startsWith(`${l
 	(a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
 
+const posts = (await getCollection('posts', ({ id, data }) => id.startsWith(`${lang}/`) && data.area === areaId)).sort(
+	(a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const formatDate = (date: Date) => date.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-GB', { year: 'numeric', month: 'long' });
+
 // The summary alone is too short to work as a meta description, so the opening paragraph tops it up.
 const description = `${area.summary[lang]} ${area.intro[lang][0]}`.slice(0, 155);
 ---
@@ -73,6 +79,25 @@ const description = `${area.summary[lang]} ${area.intro[lang][0]}`.slice(0, 155)
 				</ul>
 			) : (
 				<p>{t('areas.noNotes')}</p>
+			)
+		}
+	</section>
+
+	<section class="skills-section">
+		<h2>{t('areas.posts')}</h2>
+		{
+			posts.length > 0 ? (
+				<ul class="note-list">
+					{posts.map((post) => (
+						<li>
+							<a href={localizePath(`/blog/${post.id.slice(lang.length + 1)}/`, lang)}>{post.data.title}</a>
+							<p class="note-meta">{formatDate(post.data.date)}</p>
+							<p>{post.data.summary}</p>
+						</li>
+					))}
+				</ul>
+			) : (
+				<p>{t('areas.noPosts')}</p>
 			)
 		}
 	</section>

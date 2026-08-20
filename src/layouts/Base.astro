@@ -2,7 +2,7 @@
 import Cube from '../components/Cube.astro';
 import Footer from '../components/Footer.astro';
 import Nav from '../components/Nav.astro';
-import { stripLangPrefix, useTranslations, type Lang } from '../i18n/utils';
+import { localizePath, stripLangPrefix, useTranslations, type Lang } from '../i18n/utils';
 import '../styles/global.css';
 
 interface Props {
@@ -44,6 +44,7 @@ const person = {
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonical} />
 		{alternates.map((alt) => <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />)}
+		<link rel="alternate" type="application/rss+xml" title="Jon A. Martiarena" href={localizePath('/rss.xml', lang)} />
 
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />

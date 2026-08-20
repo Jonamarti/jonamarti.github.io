@@ -45,4 +45,19 @@ const notes = defineCollection({
 	}),
 });
 
-export const collections = { projects, notes };
+const posts = defineCollection({
+	loader: glob({ pattern: '**/*.md', base: './src/content/posts' }),
+	schema: z.object({
+		title: z.string(),
+		summary: z.string(),
+		description: z.string(),
+		/** Unset for posts that are not tied to one of the five practice areas, personal writing included. */
+		area: area.optional(),
+		date: z.date(),
+		tags: z.array(z.string()).default([]),
+		/** Table of contents and the wide, left aligned layout, for the longer write ups. */
+		longform: z.boolean().default(false),
+	}),
+});
+
+export const collections = { projects, notes, posts };

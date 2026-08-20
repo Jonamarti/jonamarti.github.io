@@ -18,6 +18,7 @@ const isCurrent = (path: string) => here === path;
 const home = localizePath('/', lang);
 const about = localizePath('/about/', lang);
 const projectsIndex = localizePath('/projects/', lang);
+const blogIndex = localizePath('/blog/', lang);
 
 const entries = await getCollection('projects', ({ id, data }) => id.startsWith(`${lang}/`) && data.detail);
 entries.sort((a, b) => a.data.order - b.data.order);
@@ -35,6 +36,7 @@ const areaLinks = areas.map((area) => ({
 
 const inProjects = here.startsWith(projectsIndex);
 const inAreas = here.startsWith(areasIndex) || here.startsWith(localizePath('/notes/', lang));
+const inBlog = here.startsWith(blogIndex);
 const swapUrl = swapHref ?? localizePath(stripLangPrefix(here), otherLang(lang));
 ---
 
@@ -82,6 +84,8 @@ const swapUrl = swapHref ?? localizePath(stripLangPrefix(here), otherLang(lang))
 				</a>
 			</div>
 		</li>
+
+		<li><a href={blogIndex} class={inBlog ? 'activePage' : undefined}>{t('nav.blog')}</a></li>
 
 		<li class="nav-end"><a href={about} class={isCurrent(about) ? 'activePage' : undefined}>{t('nav.about')}</a></li>
 		<li class="nav-end"><a href={swapUrl} lang={otherLang(lang)} hreflang={otherLang(lang)}>{t('nav.language')}</a></li>

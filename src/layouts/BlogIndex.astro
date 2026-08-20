@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content';
+import Base from './Base.astro';
+import { areas, findArea } from '../data/areas';
+import { localizePath, useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const posts = (await getCollection('posts', ({ id }) => id.startsWith(`${lang}/`))).sort(
+	(a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const blogIndex = localizePath('/blog/', lang);
+
+// Real links to the area pages, so the control still works with scripting off. The script
+// upgrades them into an in place filter, same as the projects index.
+const filters = [
+	{ id: '', label: t('filter.all'), href: blogIndex },
+	...areas.map((area) => ({ id: area.id, label: area.name[lang], href: localizePath(`/areas/${area.id}/`, lang) })),
+];
+
+const formatDate = (date: Date) => date.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-GB', { year: 'numeric', month: 'long' });
+---
+
+<Base lang={lang} title={t('blog.title')} description={t('blog.description')}>
+	<header><h1>{t('blog.heading')}</h1></header>
+	<p>{t('blog.intro')}</p>
+
+	{
+		posts.length > 0 && (
+			<nav class="filters" aria-label={t('blog.filterLabel')} data-filters data-template={t('blog.showing')}>
+				{filters.map((filter) => (
+					<a href={filter.href} data-filter={filter.id} aria-current={filter.id === '' ? 'true' : undefined}>
+						{filter.label}
+					</a>
+				))}
+			</nav>
+		)
+	}
+
+	<p class="filter-status" data-filter-status role="status" aria-live="polite"></p>
+
+	{
+		posts.length > 0 ? (
+			<ul class="note-list">
+				{posts.map((post) => (
+					<li data-areas={post.data.area ?? ''}>
+						<a href={localizePath(`/blog/${post.id.slice(lang.length + 1)}/`, lang)}>{post.data.title}</a>
+						<p class="note-meta">
+							{formatDate(post.data.date)}
+							{post.data.area && <> · {findArea(post.data.area)!.name[lang]}</>}
+						</p>
+						<p>{post.data.summary}</p>
+					</li>
+				))}
+			</ul>
+		) : (
+			<p>{t('blog.noPosts')}</p>
+		)
+	}
+
+	<div class="goUpAnchor">
+		<a href="#main-content" aria-label={t('goUp.label')}>&#8593;</a>
+	</div>
+</Base>
+
+<script>
+	import { initAreaFilter } from '../scripts/area-filter';
+	initAreaFilter('.note-list li');
+</script>
