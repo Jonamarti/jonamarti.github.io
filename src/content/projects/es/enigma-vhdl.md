@@ -482,9 +482,9 @@ obligatoria, el visor de formas de onda es opcional.</p>
 .\simulate.ps1 -clean   # borra los archivos generados</code></pre>
 
 <p>Hay también un camino con Docker (<code>simulate-docker.ps1</code>) que no necesita más que
-Docker Desktop. Para las formas de onda, el repositorio incluye un script Tcl que coloca marcas
-anotadas en cada caso de prueba, así puedes ir recorriendo las seis etapas y leer el valor en cada
-una en lugar de descifrar bits a ojo.</p>
+Docker Desktop. <code>-view</code> abre GTKWave con las seis etapas ya cargadas y decodificadas en
+decimal, más tres marcas en los puntos interesantes, así que sale una forma de onda legible desde
+el primer momento en lugar de tener que rebuscar en el árbol de señales y descifrar bits a ojo.</p>
 
 </details>
 

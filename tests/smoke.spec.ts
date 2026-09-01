@@ -4,7 +4,16 @@ import { openNav } from './nav';
 const areaIds = ['electronics', 'qa', 'tinkering', 'web', 'martial-arts'];
 const areaRoutes = areaIds.map((id) => `/areas/${id}/`);
 
-const projectSlugs = ['plant-blog', 'life-game', 'matrix-calculator', 'number-converter', 'todo-app', 'enigma-vhdl', 'round-timer'];
+const projectSlugs = [
+	'plant-blog',
+	'life-game',
+	'matrix-calculator',
+	'number-converter',
+	'todo-app',
+	'enigma-vhdl',
+	'round-timer',
+	'istqb-ctfl-practice',
+];
 
 const routes = [
 	'/',
@@ -14,6 +23,7 @@ const routes = [
 	'/areas/',
 	...areaRoutes,
 	'/notes/testing-this-site/',
+	'/blog/',
 	'/es/',
 	'/es/about/',
 	'/es/projects/',
@@ -21,6 +31,7 @@ const routes = [
 	'/es/areas/',
 	...areaRoutes.map((route) => `/es${route}`),
 	'/es/notes/testing-this-site/',
+	'/es/blog/',
 ];
 
 test.describe('pages', () => {

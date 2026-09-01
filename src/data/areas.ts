@@ -18,19 +18,15 @@ export const areas: Area[] = [
 		id: 'electronics',
 		name: { en: 'Electronics and low level', es: 'Electrónica y bajo nivel' },
 		summary: {
-			en: 'Digital logic and assembly, from truth tables to gates.',
-			es: 'Lógica digital y assembly, de la tabla de verdad a las puertas.',
+			en: 'Digital logic and assembly, from truth tables to logic gates.',
+			es: 'Lógica digital y ensamblador, de las tablas de verdad a las puertas lógicas.',
 		},
 		intro: {
 			en: [
 				'Boolean equations derived from truth tables, simplified with Karnaugh maps and mapped onto AND, OR and NOT gates and T flip-flops. No behavioural shortcuts, which is slower to write and much easier to get wrong, and that is exactly the point of doing it that way.',
-				'This is also where Motorola 68K assembly and computer architecture live. I picked all of it up studying Electronic Engineering at the UPV/EHU, a degree I did not finish, and it still changes how I read code several abstraction levels above it.',
-				'The Enigma below is the piece I keep coming back to. It is a working cipher machine at gate level, and it is also the clearest example I have of why a design you understand well is not a design you have verified.',
 			],
 			es: [
-				'Ecuaciones booleanas deducidas de tablas de verdad, simplificadas con mapas de Karnaugh y traducidas a puertas AND, OR y NOT y biestables T. Sin atajos de comportamiento, que es más lento de escribir y mucho más fácil de equivocar, y ahí está justamente la gracia de hacerlo así.',
-				'Aquí vive también el assembly de Motorola 68K y la arquitectura de computadores. Todo eso lo aprendí estudiando Ingeniería Electrónica en la UPV/EHU, una carrera que no llegué a terminar, y me sigue cambiando la forma de leer código que está varios niveles de abstracción por encima.',
-				'El Enigma de abajo es la pieza a la que sigo volviendo. Es una máquina de cifrado funcionando a nivel de puertas, y es también el ejemplo más claro que tengo de por qué un diseño que entiendes bien no es un diseño que hayas verificado.',
+				'Ecuaciones booleanas deducidas de tablas de verdad, simplificadas con mapas de Karnaugh y traducidas a puertas AND, OR y NOT y biestables T. Sin atajos de comportamiento, que es más lento de escribir y mucho más fácil de hacer mal, y ahí está justamente la gracia de hacerlo así.',
 			],
 		},
 	},
@@ -56,7 +52,7 @@ export const areas: Area[] = [
 		id: 'tinkering',
 		name: { en: 'Tinkering', es: 'Cacharreo' },
 		summary: {
-			en: 'Things built to find out how they work, not that anyone asked.',
+			en: 'Things built to find out how they work',
 			es: 'Cosas construidas para ver cómo funcionan.',
 		},
 		intro: {

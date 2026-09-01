@@ -471,9 +471,9 @@ waveform viewer is optional.</p>
 .\simulate.ps1 -clean   # remove generated files</code></pre>
 
 <p>There is a Docker path as well (<code>simulate-docker.ps1</code>) that needs nothing but Docker
-Desktop. For the waveform, the repo ships a Tcl script that drops annotated markers on every test
-case, so you can step through the six stages and read the value at each one instead of decoding
-bits by eye.</p>
+Desktop. <code>-view</code> opens GTKWave with the six pipeline stages already loaded and decoded
+as decimal, plus three markers at the interesting points in time, so you get a readable waveform
+straight away instead of digging through the signal tree and decoding bits by eye.</p>
 
 </details>
 
