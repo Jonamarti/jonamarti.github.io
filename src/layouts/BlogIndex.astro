@@ -43,7 +43,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang === 'es' ? 'es-E
 		)
 	}
 
-	<p class="filter-status" data-filter-status role="status" aria-live="polite"></p>
+	{posts.length > 0 && <p class="filter-status" data-filter-status role="status" aria-live="polite" />}
 
 	{
 		posts.length > 0 ? (

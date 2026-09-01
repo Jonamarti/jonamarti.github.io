@@ -65,10 +65,10 @@ const description = `${area.summary[lang]} ${area.intro[lang][0]}`.slice(0, 155)
 		}
 	</section>
 
-	<section class="skills-section">
-		<h2>{t('areas.notes')}</h2>
-		{
-			notes.length > 0 ? (
+	{
+		notes.length > 0 && (
+			<section class="skills-section">
+				<h2>{t('areas.notes')}</h2>
 				<ul class="note-list">
 					{notes.map((note) => (
 						<li>
@@ -77,16 +77,14 @@ const description = `${area.summary[lang]} ${area.intro[lang][0]}`.slice(0, 155)
 						</li>
 					))}
 				</ul>
-			) : (
-				<p>{t('areas.noNotes')}</p>
-			)
-		}
-	</section>
+			</section>
+		)
+	}
 
-	<section class="skills-section">
-		<h2>{t('areas.posts')}</h2>
-		{
-			posts.length > 0 ? (
+	{
+		posts.length > 0 && (
+			<section class="skills-section">
+				<h2>{t('areas.posts')}</h2>
 				<ul class="note-list">
 					{posts.map((post) => (
 						<li>
@@ -96,11 +94,9 @@ const description = `${area.summary[lang]} ${area.intro[lang][0]}`.slice(0, 155)
 						</li>
 					))}
 				</ul>
-			) : (
-				<p>{t('areas.noPosts')}</p>
-			)
-		}
-	</section>
+			</section>
+		)
+	}
 
 	<div class="present">
 		<p><a href={localizePath('/areas/', lang)}>{t('areas.back')}</a></p>
