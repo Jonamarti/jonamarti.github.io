@@ -13,6 +13,7 @@ const projectSlugs = [
 	'enigma-vhdl',
 	'round-timer',
 	'istqb-ctfl-practice',
+	'68k-simulator',
 ];
 
 const routes = [

@@ -5,14 +5,14 @@ const visibleCards = (page: import('@playwright/test').Page) => page.locator('.p
 test.describe('project filter', () => {
 	test('filtering by area narrows the cards down', async ({ page }) => {
 		await page.goto('/projects/');
-		await expect(visibleCards(page)).toHaveCount(9);
+		await expect(visibleCards(page)).toHaveCount(10);
 
 		await page.getByRole('link', { name: 'Tinkering', exact: true }).click();
 		await expect(visibleCards(page)).toHaveCount(4);
 		await expect(page).toHaveURL(/\?area=tinkering$/);
 
 		await page.getByRole('link', { name: 'All', exact: true }).click();
-		await expect(visibleCards(page)).toHaveCount(9);
+		await expect(visibleCards(page)).toHaveCount(10);
 		await expect(page).not.toHaveURL(/area=/);
 	});
 
@@ -22,7 +22,7 @@ test.describe('project filter', () => {
 
 		await page.goto('/projects/?area=electronics');
 		await expect(page.getByRole('heading', { name: 'Enigma VHDL' })).toBeVisible();
-		await expect(visibleCards(page)).toHaveCount(1);
+		await expect(visibleCards(page)).toHaveCount(2);
 	});
 
 	test('the area in the query string is applied on load', async ({ page }) => {
@@ -33,12 +33,12 @@ test.describe('project filter', () => {
 
 	test('an unknown area falls back to showing everything', async ({ page }) => {
 		await page.goto('/projects/?area=nonsense');
-		await expect(visibleCards(page)).toHaveCount(9);
+		await expect(visibleCards(page)).toHaveCount(10);
 	});
 
 	test('the status line reports how many are shown', async ({ page }) => {
 		await page.goto('/projects/?area=electronics');
-		await expect(page.locator('[data-filter-status]')).toHaveText('Showing 1 of 9 projects');
+		await expect(page.locator('[data-filter-status]')).toHaveText('Showing 2 of 10 projects');
 	});
 
 	test('without javascript the controls are still real links', async ({ browser }) => {
@@ -46,7 +46,7 @@ test.describe('project filter', () => {
 		const page = await context.newPage();
 		await page.goto('/projects/');
 
-		await expect(visibleCards(page)).toHaveCount(9);
+		await expect(visibleCards(page)).toHaveCount(10);
 		await page.getByRole('link', { name: 'Tinkering', exact: true }).click();
 		await expect(page).toHaveURL(/\/areas\/tinkering\/$/);
 		await expect(page.getByRole('heading', { name: 'Tinkering', level: 1 })).toBeVisible();
@@ -66,6 +66,6 @@ test.describe('project filter', () => {
 		await page.goto('/es/projects/');
 		await page.getByRole('link', { name: 'Cacharreo', exact: true }).click();
 		await expect(visibleCards(page)).toHaveCount(5);
-		await expect(page.locator('[data-filter-status]')).toHaveText('Mostrando 5 de 9 proyectos');
+		await expect(page.locator('[data-filter-status]')).toHaveText('Mostrando 5 de 10 proyectos');
 	});
 });
