@@ -395,9 +395,9 @@ adder is just the identity function, which is the only case anybody had checked.
 
 <h3>Bug 2: a missing subtractor</h3>
 
-<p>This one was not a slip, it was a misunderstanding. The counter was added to the input before
-the rotor but never subtracted from the output. A real Enigma shifts the whole permutation by the
-rotor position, and adding a constant on the way in is not the same operation, so the difference
+<p>The counter was added to the input before the rotor but never subtracted from the output. 
+A real Enigma shifts the whole permutation by the rotor position, 
+and adding a constant on the way in is not the same operation, so the difference
 does not cancel. Even with a perfectly correct adder the machine could not have been self-inverse
 for any counter other than zero. The fix is a modulo-10 subtractor after the inverse rotor.</p>
 
@@ -470,23 +470,16 @@ waveform viewer is optional.</p>
 .\simulate.ps1 -view    # open the waveform in Surfer or GTKWave
 .\simulate.ps1 -clean   # remove generated files</code></pre>
 
-<p>There is a Docker path as well (<code>simulate-docker.ps1</code>) that needs nothing but Docker
-Desktop. <code>-view</code> opens GTKWave with the six pipeline stages already loaded and decoded
-as decimal, plus three markers at the interesting points in time, so you get a readable waveform
-straight away instead of digging through the signal tree and decoding bits by eye.</p>
-
 </details>
 
-## What I took away from it
+## Conclusion
 
-Writing the tests at the same time as the code back in 2017 would have caught both bugs in an
-afternoon. Manual waveform inspection missed eight arithmetic errors and a fundamental
-architectural flaw, and being familiar with the design actively worked against me, I knew what the
-waveform was supposed to look like, so that is what I saw. Nine years of occasionally reopening the
-files never made a dent in that.
+
+If we had written the tests while we were writing the code we would have cought the bugs pretty quickly.
+Manually looking to the waveforms for a very few test cases left those 8 errors and an architecture error. 
+Knowing the desing played against me, because I knew what the system was built to do. That is a big reason arguing 
+for black box testing. Even if I sometimes looked at the project during these nine years, I never saw anything strange.
 
 The project also sits on a trade-off I still find interesting. Gate-level SOP equations are
 faithful to how digital logic is actually taught and built, and deriving them by hand is the whole
-point of the exercise, but they get error-prone once you are at a hundred terms or so.
-`ieee.numeric_std` is compact and correct by construction, and it hides exactly the detail the
-exercise was about. The design now uses each one where it makes sense.
+point of the exercise, but they get error-prone for so many terms.

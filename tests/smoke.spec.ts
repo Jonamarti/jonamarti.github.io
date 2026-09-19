@@ -14,6 +14,8 @@ const projectSlugs = [
 	'round-timer',
 	'istqb-ctfl-practice',
 	'68k-simulator',
+	'quiz-engine',
+	'combat-quiz',
 ];
 
 const routes = [

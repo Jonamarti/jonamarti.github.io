@@ -402,9 +402,7 @@ mirado nadie.</p>
 
 <h3>Bug 2: faltaba un restador</h3>
 
-<p>Este no fue un despiste, fue un malentendido. El contador se sumaba a la entrada antes del rotor
-pero no se restaba nunca de la salida. Una Enigma real desplaza la permutación entera según la
-posición del rotor, y sumar una constante a la ida no es la misma operación, así que la diferencia
+<p> El contador se sumaba a la entrada antes del rotor pero no se restaba nunca de la salida. Una Enigma real desplaza la permutación entera según la posición del rotor, y sumar una constante a la ida no es la misma operación, así que la diferencia
 no se cancela. Incluso con un sumador perfectamente correcto la máquina no podía ser autoinversa
 para ningún contador que no fuese cero. El arreglo es un restador módulo 10 después del rotor
 inverso.</p>
@@ -481,23 +479,16 @@ obligatoria, el visor de formas de onda es opcional.</p>
 .\simulate.ps1 -view    # abre la forma de onda en Surfer o GTKWave
 .\simulate.ps1 -clean   # borra los archivos generados</code></pre>
 
-<p>Hay también un camino con Docker (<code>simulate-docker.ps1</code>) que no necesita más que
-Docker Desktop. <code>-view</code> abre GTKWave con las seis etapas ya cargadas y decodificadas en
-decimal, más tres marcas en los puntos interesantes, así que sale una forma de onda legible desde
-el primer momento en lugar de tener que rebuscar en el árbol de señales y descifrar bits a ojo.</p>
-
 </details>
 
-## Lo que me llevo de esto
+## Conclusión
 
-Escribir los tests a la vez que el código allá por 2017 habría cazado los dos bugs en una tarde.
-Mirar las formas de onda a mano se dejó ocho errores aritméticos y un fallo de arquitectura de
-base, y conocer bien el diseño jugó activamente en mi contra, yo sabía cómo se suponía que tenía
-que verse la forma de onda, así que eso es lo que vi. Nueve años reabriendo los archivos de vez en
-cuando no hicieron ni mella en eso.
+Si hubiera desarrollado los test a la par que el código, los test los hubiéramos cazado rápidamente.
+Mirar las formas de onda a mano para muy pocos casos se dejó ocho errores aritméticos y un fallo de arquitectura de
+base, y conocer bien el diseño jugó activamente en mi contra ya que yo sabía cómo se suponía que tenía
+que verse la forma de onda, así que eso es lo que vi. Aunque revisé de vez en cuando el proyecto durante estos
+ nueve años no ví nada raro.
 
 El proyecto además se apoya en un compromiso que me sigue pareciendo interesante. Las ecuaciones
 SOP a nivel de puertas son fieles a cómo se enseña y se construye la lógica digital de verdad, y
-deducirlas a mano es justo de lo que va el ejercicio, pero se vuelven propensas a errores en cuanto
-andas por los cien términos. `ieee.numeric_std` es compacto y correcto por construcción, y esconde
-exactamente el detalle del que iba el ejercicio. El diseño ahora usa cada cosa donde tiene sentido.
+deducirlas a mano es justo de lo que va el ejercicio, pero se vuelven propensas a errores para tantos términos.
