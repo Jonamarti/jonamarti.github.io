@@ -5,26 +5,30 @@ at <https://jonamarti.github.io>.
 
 ## Commands
 
-| Command                   | What it does                                              |
-| ------------------------- | --------------------------------------------------------- |
-| `npm run dev`             | Development server on <http://localhost:4321>             |
-| `npm run build`           | Builds the site into `dist/`                              |
-| `npm run preview`         | Serves the built site                                     |
-| `npm run lint`            | ESLint over `.astro`, `.ts` and `.mjs`                    |
-| `npm run lint:css`        | Stylelint over `src/styles`                               |
-| `npm run format`          | Prettier, writing the changes                             |
-| `npm run format:check`    | Prettier, reporting instead of writing                    |
-| `npm run check`           | Type checks `.astro` and `.ts` files                      |
-| `npm run check:workflows` | actionlint over `.github/workflows`                       |
-| `npm run check:links`     | Resolves every internal link in `dist/`, case sensitively |
-| `npm test`                | Playwright tests, desktop and mobile                      |
-| `npm run lighthouse`      | Lighthouse budgets against `dist/`                        |
-| `npm run verify`          | All of the above, in the order CI runs them               |
+| Command                   | What it does                                                 |
+| ------------------------- | ------------------------------------------------------------ |
+| `npm run dev`             | Development server on <http://localhost:4321>                |
+| `npm run build`           | Builds the site into `dist/`                                 |
+| `npm run preview`         | Serves the built site                                        |
+| `npm run lint`            | ESLint over `.astro`, `.ts` and `.mjs`                       |
+| `npm run lint:css`        | Stylelint over `src/styles`                                  |
+| `npm run format`          | Prettier, writing the changes                                |
+| `npm run format:check`    | Prettier, reporting instead of writing                       |
+| `npm run check`           | Type checks `.astro` and `.ts` files                         |
+| `npm run check:workflows` | actionlint over `.github/workflows`                          |
+| `npm run check:links`     | Resolves every internal link in `dist/`, case sensitively    |
+| `npm test`                | Playwright tests, desktop and mobile                         |
+| `npm run lighthouse`      | Lighthouse budgets against `dist/`                           |
+| `npm run verify`          | Lint, format, workflow, type, build, link and browser checks |
 
 `npm run check:links` compares references against the real directory entries instead of asking
 the filesystem whether a path exists. Windows is case insensitive and GitHub Pages is not, so a
 reference to `Image.PNG` that is really `image.png` only breaks in production; this catches it
 locally.
+
+`npm run verify` matches the main validation sequence, but does not include Lighthouse because
+that command needs a Chrome path configured in some environments. CI runs Lighthouse separately
+after the Playwright suite.
 
 The tests serve `dist/` through `scripts/serve-dist.mjs` rather than `astro preview`, which
 holds a project wide lock and refuses to start alongside another Astro server.
@@ -44,9 +48,9 @@ Stylelint over the staged CSS, and actionlint if a workflow file is part of the 
 under a few seconds, which is the point; a hook that costs half a minute gets skipped with
 `--no-verify` within a week.
 
-`pre-push` runs `npm run verify`, the same sequence CI runs. That is where the build, the link
-check and the Playwright suite live, so a red pipeline is caught before the push rather than
-after it.
+`pre-push` runs `npm run verify`. That is where the build, the link check and the Playwright
+suite live, so most pipeline failures are caught before the push. Lighthouse remains CI-only
+unless it is run manually.
 
 `npm run check:workflows` exists because a broken deploy got through everything else. The
 workflow had a run step whose next step had been swallowed by a bad indent, which is valid YAML
@@ -59,14 +63,14 @@ may need the check adjusting.
 ```
 src/
   layouts/     Base plus one layout per page type
-  components/  Nav, Footer, Cube, ProjectCard, Timeline, Skills
-  content/     projects/{en,es}/*.md, validated by src/content.config.ts
+  components/  Shared navigation, cards, badges and interactive widgets
+  content/     projects, posts and notes in English and Spanish
   data/        Timeline, skills and About copy, both languages
   i18n/        String catalogue and locale helpers
   pages/       Thin route files that delegate to the layouts
 public/        Images, favicons, manifest, and redirects for the pre-Astro URLs
-tests/         Playwright smoke and accessibility suites
-scripts/       Build time checks
+tests/         Playwright smoke, accessibility, filtering and widget suites
+scripts/       Link/workflow checks and the test server for dist/
 ```
 
 ## Languages
@@ -83,6 +87,18 @@ slug. The frontmatter schema is in `src/content.config.ts`; a missing or misspel
 the build. The card, the detail page, the nav dropdown and the sitemap all follow from there.
 
 Set `detail: false` for a project that should appear as a card without a page of its own.
+
+## Adding a blog post or note
+
+Create matching files with the same slug under `src/content/posts/en/` and
+`src/content/posts/es/`. Blog frontmatter supports an optional portfolio area and a `longform`
+flag, which enables the wider reading layout and table of contents when the article has enough
+second-level headings.
+
+Notes follow the same bilingual convention under `src/content/notes/`, but their `area` is
+required. The schemas for projects, posts and notes all live in `src/content.config.ts`.
+
+The blog has separate English and Spanish RSS feeds at `/rss.xml` and `/es/rss.xml`.
 
 ## Deployment
 

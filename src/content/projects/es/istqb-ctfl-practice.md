@@ -6,8 +6,8 @@ summary: >-
 description: Hub de práctica ISTQB CTFL v4.0 con diez exámenes, generador por capítulo y nivel K, revisión, temporizador, historial, autoguardado y validación en CI.
 image: ../../../assets/exam_prep.webp
 imageAlt: La web de práctica ISTQB CTFL mostrando una lista de exámenes para elegir
-repo: https://github.com/Jonamarti/CTFL_v4.0_practica_examenes
-demo: https://jonamarti.github.io/CTFL_v4.0_practica_examenes/
+repo: https://github.com/Jonamarti/qa-practice
+demo: https://jonamarti.github.io/qa-practice/
 demoLabel: Práctica ISTQB CTFL
 tags: [ISTQB, Testing, QA, HTML, JavaScript, CI]
 areas: [qa]
