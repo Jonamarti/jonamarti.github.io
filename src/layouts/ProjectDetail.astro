@@ -17,7 +17,7 @@ const { Content } = await render(entry);
 const { title, description, image, imageAlt, animated, tags, repo, demo, demoLabel, longform, areas, widget } = entry.data;
 ---
 
-<Base lang={lang} title={`${title} - Jon A. Martiarena`} description={description}>
+<Base lang={lang} title={`${title} - Jon A. Martiarena`} description={description} image={image} imageAlt={imageAlt}>
 	<section>
 		<h1>{title}</h1>
 

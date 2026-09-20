@@ -23,11 +23,11 @@ filesystem whether a path exists. Windows is case insensitive and GitHub Pages i
 reference to `Image.PNG` that is really `image.png` works locally and 404s in production. Asking
 `existsSync` would never catch it.
 
-**Playwright.** 86 tests across a desktop and a mobile project: every route returns 200 with a
+**Playwright.** 204 tests across a desktop and a mobile project: every route returns 200 with a
 single `h1`, the language switcher lands on the same page in the other language, the dropdown opens
 and closes with the keyboard, and the URLs from the pre-Astro version of the site still resolve.
 
-**Accessibility.** `axe-core` runs against eight pages with the WCAG 2.1 AA rule set, plus one pass
+**Accessibility.** `axe-core` runs against twenty one pages with the WCAG 2.1 AA rule set, plus one pass
 with the navigation dropdown open, since a menu that is only reachable by mouse passes every test
 that never opens it.
 

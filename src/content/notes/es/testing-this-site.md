@@ -24,12 +24,12 @@ preguntarle al sistema de ficheros si existe una ruta. Windows no distingue may�
 Pages sí, así que una referencia a `Image.PNG` que en realidad es `image.png` funciona en local y da
 404 en producción. Preguntando con `existsSync` no se caza nunca.
 
-**Playwright.** 86 tests repartidos en un proyecto de escritorio y otro de móvil: cada ruta
+**Playwright.** 204 tests repartidos en un proyecto de escritorio y otro de móvil: cada ruta
 devuelve 200 con un único `h1`, el selector de idioma cae en la misma página en el otro idioma, el
 desplegable se abre y se cierra con teclado, y las URLs de la versión anterior a Astro siguen
 resolviendo.
 
-**Accesibilidad.** `axe-core` se ejecuta sobre ocho páginas con el conjunto de reglas WCAG 2.1 AA,
+**Accesibilidad.** `axe-core` se ejecuta sobre veintiuna páginas con el conjunto de reglas WCAG 2.1 AA,
 más una pasada con el desplegable de navegación abierto, porque un menú al que solo se llega con el
 ratón pasa todos los tests que nunca lo abren.
 

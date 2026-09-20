@@ -12,7 +12,7 @@ const projectSlugs = [
 	'todo-app',
 	'enigma-vhdl',
 	'round-timer',
-	'istqb-ctfl-practice',
+	'qa-practice',
 	'68k-simulator',
 	'quiz-engine',
 	'combat-quiz',
@@ -60,6 +60,19 @@ test.describe('pages', () => {
 		await expect(page.locator('link[hreflang="en"]')).toHaveAttribute('href', /\/projects\/enigma-vhdl\/$/);
 		await expect(page.locator('link[hreflang="es"]')).toHaveAttribute('href', /\/es\/projects\/enigma-vhdl\/$/);
 		await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/projects\/enigma-vhdl\/$/);
+	});
+
+	test('social cards carry an absolute image that resolves', async ({ page, request }) => {
+		for (const route of ['/', '/projects/qa-practice/']) {
+			await page.goto(route);
+			const image = await page.locator('meta[property="og:image"]').getAttribute('content');
+			expect(image).toMatch(/^https:\/\/jonamarti\.github\.io\//);
+			await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute('content', image!);
+
+			// The tag points at the published origin, so only the path can be served locally.
+			const response = await request.get(new URL(image!).pathname);
+			expect(response.status()).toBe(200);
+		}
 	});
 
 	test('the footer stays at the bottom when a page is short', async ({ page }) => {
@@ -160,6 +173,8 @@ test.describe('legacy urls', () => {
 		'/pages/matrixCalc.html': '/projects/matrix-calculator/',
 		'/pages/lifegame.html': '/projects/life-game/',
 		'/pages/enigma.html': '/projects/enigma-vhdl/',
+		'/projects/istqb-ctfl-practice/': '/projects/qa-practice/',
+		'/es/projects/istqb-ctfl-practice/': '/es/projects/qa-practice/',
 	};
 
 	for (const [from, to] of Object.entries(moved)) {

@@ -40,11 +40,11 @@ export const areas: Area[] = [
 		intro: {
 			en: [
 				'End to end testing with Cypress and Playwright, continuous integration with Jenkins, GitLab CI and GitHub Actions, and environments built with Docker and Nginx so that a pipeline runs against something close to production.',
-				'This site is part of the area rather than a showcase of it. Every push runs a type check, a build, a link checker, 86 Playwright tests across desktop and mobile, an axe accessibility pass and Lighthouse budgets before anything is deployed.',
+				'This site is part of the area rather than a showcase of it. Every push runs a type check, a build, a link checker, 204 Playwright tests across desktop and mobile, an axe accessibility pass and Lighthouse budgets before anything is deployed.',
 			],
 			es: [
 				'Tests de extremo a extremo con Cypress y Playwright, integración continua con Jenkins, GitLab CI y GitHub Actions, y entornos montados con Docker y Nginx para que el pipeline corra contra algo parecido a producción.',
-				'Esta web forma parte del área, no es un escaparate de ella. Cada push pasa un chequeo de tipos, un build, un comprobador de enlaces, 86 tests de Playwright en escritorio y móvil, una auditoría de accesibilidad con axe y los presupuestos de Lighthouse antes de desplegar nada.',
+				'Esta web forma parte del área, no es un escaparate de ella. Cada push pasa un chequeo de tipos, un build, un comprobador de enlaces, 204 tests de Playwright en escritorio y móvil, una auditoría de accesibilidad con axe y los presupuestos de Lighthouse antes de desplegar nada.',
 			],
 		},
 	},

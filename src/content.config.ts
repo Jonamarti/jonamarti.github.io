@@ -16,8 +16,8 @@ const projects = defineCollection({
 			imageAlt: z.string(),
 			/** Animated sources are emitted untouched; resizing them would flatten them to one frame. */
 			animated: z.boolean().default(false),
-			repo: z.string().url().optional(),
-			demo: z.string().url().optional(),
+			repo: z.url().optional(),
+			demo: z.url().optional(),
 			demoLabel: z.string().optional(),
 			tags: z.array(z.string()).default([]),
 			/** Wide diagrams look better scaled down on the index cards. */
